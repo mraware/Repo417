@@ -163,4 +163,3 @@ ALTER TABLE "History" ADD CONSTRAINT "History_fk1" FOREIGN KEY ("Recipe") REFERE
 ALTER TABLE "Preferences" ADD CONSTRAINT "Preferences_fk0" FOREIGN KEY ("User") REFERENCES User("User_id");
 ALTER TABLE "Preferences" ADD CONSTRAINT "Preferences_fk1" FOREIGN KEY ("Flavor") REFERENCES Flavor_Profile("Flavor_id");
 
-
