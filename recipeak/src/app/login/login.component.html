@@ -17,9 +17,6 @@
 
 <ng-template #display>
   <ul class="navbar-nav mr-auto">
-    <!-- <li class="nav-item" *ngIf="loggedUser.customer">
-      <a class="nav-link" [routerLink]="['/purch/', myCart.id]">My Cart</a>
-    </li> -->
     <li class="nav-item">
       <div *ngIf="loggedUser.employee; else customer">
         <span>Welcome {{loggedUser.employee.title}}! {{ loggedUser.employee.first + " " + loggedUser.employee.last }}</span>
