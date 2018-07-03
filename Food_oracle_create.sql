@@ -24,6 +24,9 @@ CREATE TABLE "Recipe" (
 	"Flavor" number,
 	"Creator" number,
 	"Privacy" varchar2,
+	"Burns" number,
+	"Promoted" number,
+	"Notes" varchar2,
 	constraint RECIPE_PK PRIMARY KEY ("Recipe_id")
 CREATE sequence "RECIPE_SEQ"
 /
@@ -37,20 +40,20 @@ end;
 
 )
 /
-CREATE TABLE "Ingredients" (
-	"Ingredient_id" number,
+CREATE TABLE "Recipe_Ingredients" (
+	"RecipeIngredient_id" number,
 	"Recipe_id" number,
-	"Ingredient" varchar2,
+	"Ingredient" number,
 	"Amount" number,
 	"Unit" varchar2,
-	constraint INGREDIENTS_PK PRIMARY KEY ("Ingredient_id")
-CREATE sequence "INGREDIENTS_SEQ"
+	constraint RECIPE_INGREDIENTS_PK PRIMARY KEY ("RecipeIngredient_id")
+CREATE sequence "RECIPE_INGREDIENTS_SEQ"
 /
-CREATE trigger "BI_INGREDIENTS"
-  before insert on "INGREDIENTS"
+CREATE trigger "BI_RECIPE_INGREDIENTS"
+  before insert on "RECIPE_INGREDIENTS"
   for each row
 begin
-  select "INGREDIENTS_SEQ".nextval into :NEW."Ingredient_id" from dual;
+  select "RECIPE_INGREDIENTS_SEQ".nextval into :NEW."RecipeIngredient_id" from dual;
 end;
 /
 
@@ -59,7 +62,7 @@ end;
 CREATE TABLE "Instructions" (
 	"Instruction_id" number,
 	"Recipe_id" number,
-	"Order" number,
+	"Step_Number" number,
 	"Step" varchar2,
 	constraint INSTRUCTIONS_PK PRIMARY KEY ("Instruction_id")
 CREATE sequence "INSTRUCTIONS_SEQ"
@@ -74,17 +77,17 @@ end;
 
 )
 /
-CREATE TABLE "Flavor Profile" (
+CREATE TABLE "Flavor_Profile" (
 	"Flavor_id" number,
 	"Name" varchar2,
-	constraint FLAVOR PROFILE_PK PRIMARY KEY ("Flavor_id")
-CREATE sequence "FLAVOR PROFILE_SEQ"
+	constraint FLAVOR_PROFILE_PK PRIMARY KEY ("Flavor_id")
+CREATE sequence "FLAVOR_PROFILE_SEQ"
 /
-CREATE trigger "BI_FLAVOR PROFILE"
-  before insert on "FLAVOR PROFILE"
+CREATE trigger "BI_FLAVOR_PROFILE"
+  before insert on "FLAVOR_PROFILE"
   for each row
 begin
-  select "FLAVOR PROFILE_SEQ".nextval into :NEW."Flavor_id" from dual;
+  select "FLAVOR_PROFILE_SEQ".nextval into :NEW."Flavor_id" from dual;
 end;
 /
 
@@ -95,6 +98,8 @@ CREATE TABLE "History" (
 	"User" number,
 	"Recipe" number,
 	"Saved" number,
+	"Score" number,
+	"Review" varchar2,
 	constraint HISTORY_PK PRIMARY KEY ("History_id")
 CREATE sequence "HISTORY_SEQ"
 /
@@ -112,6 +117,7 @@ CREATE TABLE "Preferences" (
 	"Preferences_id" number,
 	"User" number,
 	"Flavor" varchar2,
+	"Score" number,
 	constraint PREFERENCES_PK PRIMARY KEY ("Preferences_id")
 CREATE sequence "PREFERENCES_SEQ"
 /
@@ -125,11 +131,28 @@ end;
 
 )
 /
+CREATE TABLE "Ingredient" (
+	"Ingredient_id" number,
+	"Ingredient" varchar2,
+	constraint INGREDIENT_PK PRIMARY KEY ("Ingredient_id")
+CREATE sequence "INGREDIENT_SEQ"
+/
+CREATE trigger "BI_INGREDIENT"
+  before insert on "INGREDIENT"
+  for each row
+begin
+  select "INGREDIENT_SEQ".nextval into :NEW."Ingredient_id" from dual;
+end;
+/
 
-ALTER TABLE "Recipe" ADD CONSTRAINT "Recipe_fk0" FOREIGN KEY ("Flavor") REFERENCES Flavor Profile("Flavor_id");
+)
+/
+
+ALTER TABLE "Recipe" ADD CONSTRAINT "Recipe_fk0" FOREIGN KEY ("Flavor") REFERENCES Flavor_Profile("Flavor_id");
 ALTER TABLE "Recipe" ADD CONSTRAINT "Recipe_fk1" FOREIGN KEY ("Creator") REFERENCES User("User_id");
 
-ALTER TABLE "Ingredients" ADD CONSTRAINT "Ingredients_fk0" FOREIGN KEY ("Recipe_id") REFERENCES Recipe("Recipe_id");
+ALTER TABLE "Recipe_Ingredients" ADD CONSTRAINT "Recipe_Ingredients_fk0" FOREIGN KEY ("Recipe_id") REFERENCES Recipe("Recipe_id");
+ALTER TABLE "Recipe_Ingredients" ADD CONSTRAINT "Recipe_Ingredients_fk1" FOREIGN KEY ("Ingredient") REFERENCES Ingredient("Ingredient_id");
 
 ALTER TABLE "Instructions" ADD CONSTRAINT "Instructions_fk0" FOREIGN KEY ("Recipe_id") REFERENCES Recipe("Recipe_id");
 
@@ -138,5 +161,6 @@ ALTER TABLE "History" ADD CONSTRAINT "History_fk0" FOREIGN KEY ("User") REFERENC
 ALTER TABLE "History" ADD CONSTRAINT "History_fk1" FOREIGN KEY ("Recipe") REFERENCES Recipe("Recipe_id");
 
 ALTER TABLE "Preferences" ADD CONSTRAINT "Preferences_fk0" FOREIGN KEY ("User") REFERENCES User("User_id");
-ALTER TABLE "Preferences" ADD CONSTRAINT "Preferences_fk1" FOREIGN KEY ("Flavor") REFERENCES Flavor Profile("Flavor_id");
+ALTER TABLE "Preferences" ADD CONSTRAINT "Preferences_fk1" FOREIGN KEY ("Flavor") REFERENCES Flavor_Profile("Flavor_id");
+
 
