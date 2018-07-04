@@ -1,5 +1,8 @@
 package com.recipeak.beans;
 
+import javax.persistence.Entity;
+
+@Entity
 public class User {
 
 	private int userId;
