@@ -23,7 +23,7 @@ public class User {
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
-		LastName = lastName;
+		this.LastName = lastName;
 	}
 
 	public int getUserId() {
