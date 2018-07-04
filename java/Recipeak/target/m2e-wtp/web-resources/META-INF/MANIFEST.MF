@@ -1,13 +1,5 @@
-<<<<<<< HEAD
 Manifest-Version: 1.0
 Built-By: mille_000
 Build-Jdk: 1.8.0_171
 Created-By: Maven Integration for Eclipse
 
-=======
-Manifest-Version: 1.0
-Built-By: eyes
-Build-Jdk: 1.8.0_171
-Created-By: Maven Integration for Eclipse
-
->>>>>>> 4dbfff16a1e0bf752e15861aa80362a233adf315
