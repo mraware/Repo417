@@ -23,3 +23,8 @@
 hs_err_pid*
 /target
 
+/.metadata/
+
+#eclipse specific stuff
+.classpath*
+.setting/*
