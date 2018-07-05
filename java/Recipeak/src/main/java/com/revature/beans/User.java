@@ -1,15 +1,28 @@
 package com.revature.beans;
 
-public class User {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
+public class User 
+{
+	@Id
+	@Column(name = "userID")
 	private int userId;
+	@Column(name = "type")
 	private String type;
+	@Column(name = "username")
 	private String username;
+	@Column(name = "password")
 	private String password;
+	@Column(name = "firstName")
 	private String firstName;
+	@Column(name = "lastName")
 	private String lastName;
 	
-	public User() {
+	public User() 
+	{
 		super();
 	}
 
