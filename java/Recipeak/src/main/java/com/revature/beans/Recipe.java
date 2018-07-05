@@ -1,22 +1,35 @@
 package com.revature.beans;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-@Entity
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+//@Entity
+@Component
 @Table(name = "recipe")
 public class Recipe 
 {
 	@Id
 	@Column(name = "recipeID")
+	@SequenceGenerator(name="repId", sequenceName="RECIPE_SEQ", allocationSize=1)
+	@GeneratedValue(generator="redId", strategy=GenerationType.SEQUENCE)
 	int recipeID;
 	@Column(name = "name")
 	String name;
 	@Column(name = "flavor")
 	int flavor;
 	@Column(name = "creator")
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	int creator;
 	@Column(name = "privacy")
 	String privacy;
@@ -26,6 +39,23 @@ public class Recipe
 	int promoted;
 	@Column(name = "notes")
 	String notes;
+	public Recipe() {
+		super();
+	}
+	@Autowired
+	public Recipe(int recipeID, String name, int flavor, int creator, String privacy, int burns, int promoted,
+			String notes) {
+		super();
+		this.recipeID = recipeID;
+		this.name = name;
+		this.flavor = flavor;
+		this.creator = creator;
+		this.privacy = privacy;
+		this.burns = burns;
+		this.promoted = promoted;
+		this.notes = notes;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -80,22 +110,6 @@ public class Recipe
 	public String toString() {
 		return "Recipe [recipeID=" + recipeID + ", name=" + name + ", flavor=" + flavor + ", creator=" + creator
 				+ ", privacy=" + privacy + ", burns=" + burns + ", promoted=" + promoted + ", notes=" + notes + "]";
-	}
-	public Recipe() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public Recipe(int recipeID, String name, int flavor, int creator, String privacy, int burns, int promoted,
-			String notes) {
-		super();
-		this.recipeID = recipeID;
-		this.name = name;
-		this.flavor = flavor;
-		this.creator = creator;
-		this.privacy = privacy;
-		this.burns = burns;
-		this.promoted = promoted;
-		this.notes = notes;
 	}
 	
 }
