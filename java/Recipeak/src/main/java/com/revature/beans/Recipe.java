@@ -10,22 +10,22 @@ import javax.persistence.Table;
 public class Recipe 
 {
 	@Id
-	@Column(name = "recipeID")
-	int recipeID;
+	@Column(name = "recipe_id")
+	private int recipeId;
 	@Column(name = "name")
-	String name;
+	private String name;
 	@Column(name = "flavor")
-	int flavor;
+	private int flavor;
 	@Column(name = "creator")
-	int creator;
+	private int creator;
 	@Column(name = "privacy")
-	String privacy;
+	private String privacy;
 	@Column(name = "burns")
-	int burns;
+	private int burns;
 	@Column(name = "promoted")
-	int promoted;
+	private int promoted;
 	@Column(name = "notes")
-	String notes;
+	private String notes;
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -37,7 +37,7 @@ public class Recipe
 		result = prime * result + ((notes == null) ? 0 : notes.hashCode());
 		result = prime * result + ((privacy == null) ? 0 : privacy.hashCode());
 		result = prime * result + promoted;
-		result = prime * result + recipeID;
+		result = prime * result + recipeId;
 		return result;
 	}
 	@Override
@@ -72,29 +72,77 @@ public class Recipe
 			return false;
 		if (promoted != other.promoted)
 			return false;
-		if (recipeID != other.recipeID)
+		if (recipeId != other.recipeId)
 			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "Recipe [recipeID=" + recipeID + ", name=" + name + ", flavor=" + flavor + ", creator=" + creator
+		return "Recipe [recipeId=" + recipeId + ", name=" + name + ", flavor=" + flavor + ", creator=" + creator
 				+ ", privacy=" + privacy + ", burns=" + burns + ", promoted=" + promoted + ", notes=" + notes + "]";
 	}
 	public Recipe() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Recipe(int recipeID, String name, int flavor, int creator, String privacy, int burns, int promoted,
+	public Recipe(int recipeId, String name, int flavor, int creator, String privacy, int burns, int promoted,
 			String notes) {
 		super();
-		this.recipeID = recipeID;
+		this.recipeId = recipeId;
 		this.name = name;
 		this.flavor = flavor;
 		this.creator = creator;
 		this.privacy = privacy;
 		this.burns = burns;
 		this.promoted = promoted;
+		this.notes = notes;
+	}
+	public int getRecipeId() {
+		return recipeId;
+	}
+	public void setRecipeId(int recipeId) {
+		this.recipeId = recipeId;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getFlavor() {
+		return flavor;
+	}
+	public void setFlavor(int flavor) {
+		this.flavor = flavor;
+	}
+	public int getCreator() {
+		return creator;
+	}
+	public void setCreator(int creator) {
+		this.creator = creator;
+	}
+	public String getPrivacy() {
+		return privacy;
+	}
+	public void setPrivacy(String privacy) {
+		this.privacy = privacy;
+	}
+	public int getBurns() {
+		return burns;
+	}
+	public void setBurns(int burns) {
+		this.burns = burns;
+	}
+	public int getPromoted() {
+		return promoted;
+	}
+	public void setPromoted(int promoted) {
+		this.promoted = promoted;
+	}
+	public String getNotes() {
+		return notes;
+	}
+	public void setNotes(String notes) {
 		this.notes = notes;
 	}
 	
