@@ -46,7 +46,7 @@ public class HistoryHibernateDAO implements HistoryDAO, HibernateSession {
 
 	@Override
 	public List<History> historyByUser(User user) {
-		return (List<History>) session.createQuery("From com.revature.beans.History", History.class).list();
+		return (List<History>) session.createQuery("From com.revature.beans.History hist where", History.class).list();
 	}
 
 }
