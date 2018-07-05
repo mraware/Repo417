@@ -1,11 +1,31 @@
-package com.recipeak.beans;
+package com.revature.beans;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "recipe")
 public class Recipe 
 {
-	
+	@Id
+	@Column(name = "recipeID")
+	int recipeID;
+	@Column(name = "name")
+	String name;
+	@Column(name = "flavor")
+	int flavor;
+	@Column(name = "creator")
+	int creator;
+	@Column(name = "privacy")
+	String privacy;
+	@Column(name = "burns")
+	int burns;
+	@Column(name = "promoted")
+	int promoted;
+	@Column(name = "notes")
+	String notes;
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -17,6 +37,7 @@ public class Recipe
 		result = prime * result + ((notes == null) ? 0 : notes.hashCode());
 		result = prime * result + ((privacy == null) ? 0 : privacy.hashCode());
 		result = prime * result + promoted;
+		result = prime * result + recipeID;
 		return result;
 	}
 	@Override
@@ -51,71 +72,30 @@ public class Recipe
 			return false;
 		if (promoted != other.promoted)
 			return false;
+		if (recipeID != other.recipeID)
+			return false;
 		return true;
 	}
-	public Recipe(String name, int flavor, int creator, String privacy, int burns, int promoted, String notes) {
-		super();
-		this.name = name;
-		this.flavor = flavor;
-		this.creator = creator;
-		this.privacy = privacy;
-		this.burns = burns;
-		this.promoted = promoted;
-		this.notes = notes;
+	@Override
+	public String toString() {
+		return "Recipe [recipeID=" + recipeID + ", name=" + name + ", flavor=" + flavor + ", creator=" + creator
+				+ ", privacy=" + privacy + ", burns=" + burns + ", promoted=" + promoted + ", notes=" + notes + "]";
 	}
 	public Recipe() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	String name;
-	int flavor;
-	int creator;
-	String privacy;
-	int burns;
-	int promoted;
-	String notes;
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
+	public Recipe(int recipeID, String name, int flavor, int creator, String privacy, int burns, int promoted,
+			String notes) {
+		super();
+		this.recipeID = recipeID;
 		this.name = name;
-	}
-	public int getFlavor() {
-		return flavor;
-	}
-	public void setFlavor(int flavor) {
 		this.flavor = flavor;
-	}
-	public int getCreator() {
-		return creator;
-	}
-	public void setCreator(int creator) {
 		this.creator = creator;
-	}
-	public String getPrivacy() {
-		return privacy;
-	}
-	public void setPrivacy(String privacy) {
 		this.privacy = privacy;
-	}
-	public int getBurns() {
-		return burns;
-	}
-	public void setBurns(int burns) {
 		this.burns = burns;
-	}
-	public int getPromoted() {
-		return promoted;
-	}
-	public void setPromoted(int promoted) {
 		this.promoted = promoted;
-	}
-	public String getNotes() {
-		return notes;
-	}
-	public void setNotes(String notes) {
 		this.notes = notes;
 	}
-	
 	
 }
