@@ -15,12 +15,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+@Component
+@Scope(scopeName="prototype")
 @Entity
 @Table(name="History")
 public class History {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="history")
-	@SequenceGenerator(name="history", sequenceName="history_sq", allocationSize=1)
+	@SequenceGenerator(name="history", sequenceName="history_seq", allocationSize=1)
 	@Column(name="History_id")
 	private int id;
 	@ManyToOne(fetch=FetchType.EAGER)
@@ -32,6 +34,7 @@ public class History {
 	private int saved;
 	private int score;
 	private String review;
+	@Autowired
 	public History(int id, User user, Recipe recipe, int saved, int score, String review) {
 		super();
 		this.id = id;

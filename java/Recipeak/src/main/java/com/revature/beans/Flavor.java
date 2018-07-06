@@ -12,18 +12,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+@Component
+@Scope(scopeName="prototype")
 @Entity
 @Table(name="Flavor_Profile")
 public class Flavor {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="flavor_profile")
-	@SequenceGenerator(name="flavor_profile", sequenceName="flavor_profile_sq", allocationSize=1)
+	@SequenceGenerator(name="flavor_profile", sequenceName="flavor_profile_seq", allocationSize=1)
 	@Column(name="flavor_id")
 	private int id;
 	private String name;
 	public Flavor() {
 		super();
 	}
+	@Autowired
 	public Flavor(int id, String name) {
 		super();
 		this.id = id;

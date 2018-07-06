@@ -38,6 +38,7 @@ public class HistoryHibernateDAO implements HistoryDAO, HibernateSession {
 	@Override
 	public void deleteHistory(History history) {
 		session.delete(history);
+		
 	}
 
 	@Override
