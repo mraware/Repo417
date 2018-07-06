@@ -20,5 +20,8 @@
 		<!-- Annotation -->
 		<mapping class="com.revature.beans.Recipe"/>
 		<mapping class="com.revature.beans.User"/>
+		<mapping class="com.revature.beans.History"/>
+		<mapping class="com.revature.beans.Flavor"/>
+		<mapping class="com.revature.beans.Preference"/>
 	</session-factory>
 </hibernate-configuration>
