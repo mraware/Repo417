@@ -22,4 +22,7 @@
 	<!-- Set up our resources folder -->
 	<mvc:resources location="/static" mapping="/**"></mvc:resources>
 	
+	
+
+	
 </beans>

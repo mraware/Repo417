@@ -43,7 +43,8 @@ public class DAOTests {
 	
 	@Test 
 	public void historyDAOStore() {
-		History h = new History();
+		History h = ac.getBean(History.class,0,null,null,1,1,"ok");
+		System.out.println(h.getClass());
 		hd.addHistory(h);
 		assertFalse(h==null);
 	}
