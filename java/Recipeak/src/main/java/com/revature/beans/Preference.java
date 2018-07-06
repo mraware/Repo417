@@ -16,8 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component
-@Scope(scopeName="prototype")
 @Entity
 @Table(name="Preferences")
 public class Preference {
@@ -36,7 +34,6 @@ public class Preference {
 	public Preference() {
 		super();
 	}
-	@Autowired
 	public Preference(int id, User user, Flavor flavor, int score) {
 		super();
 		this.id = id;

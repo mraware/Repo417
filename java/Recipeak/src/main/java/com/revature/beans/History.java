@@ -15,8 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component
-@Scope(scopeName="prototype")
 @Entity
 @Table(name="History")
 public class History {
@@ -34,7 +32,6 @@ public class History {
 	private int saved;
 	private int score;
 	private String review;
-	@Autowired
 	public History(int id, User user, Recipe recipe, int saved, int score, String review) {
 		super();
 		this.id = id;

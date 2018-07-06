@@ -42,11 +42,18 @@ public class DAOTests {
 	}
 	
 	@Test 
-	public void historyDAOStore() {
-		History h = ac.getBean(History.class,0,null,null,1,1,"ok");
-		System.out.println(h.getClass());
-		hd.addHistory(h);
-		assertFalse(h==null);
+	public void historyDAOStoreDelete() {
+		History h = new History(0,null,null,1,1,"ok");
+		System.out.println(h);
+		h = hd.addHistory(h);
+		System.out.println(h);
+		if(h==null) {
+			assertTrue(false);
+		}
+		System.out.println(h);
+		hd.deleteHistory(h);
+		h = hd.getHistoryById(h.getId());
+		assertTrue(h==null);
 	}
 	
 	
