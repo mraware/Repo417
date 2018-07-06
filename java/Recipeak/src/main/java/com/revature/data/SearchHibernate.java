@@ -77,7 +77,7 @@ public class SearchHibernate implements SearchService, HibernateSession {
 	public List<Recipe> getRecipeByFlavor(int flavorId) {
 		List<Recipe> outputList = new ArrayList<Recipe>();
 		for(int i = 0; i < getAllRecipes().size(); i++) {
-			if(getAllRecipes().get(i).getFlavor() == flavorId) {
+			if(getAllRecipes().get(i).getFlavor().getId() == flavorId) {
 				outputList.add(getAllRecipes().get(i));
 			}
 		}
@@ -88,7 +88,7 @@ public class SearchHibernate implements SearchService, HibernateSession {
 	public List<Recipe> getRecipeByUser(int userId) {
 		List<Recipe> outputList = new ArrayList<Recipe>();
 		for(int i = 0; i < getAllRecipes().size(); i++) {
-			if(getAllRecipes().get(i).getCreator() == userId) {
+			if(getAllRecipes().get(i).getCreator().getUserId() == userId) {
 				outputList.add(getAllRecipes().get(i));
 			}
 		}
