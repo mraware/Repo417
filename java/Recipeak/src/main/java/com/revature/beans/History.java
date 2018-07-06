@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 public class History {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="history")
-	@SequenceGenerator(name="history", sequenceName="history_seq", allocationSize=1)
+	@SequenceGenerator(name="history", sequenceName="history_sq", allocationSize=1)
 	@Column(name="History_id")
 	private int id;
 	@ManyToOne(fetch=FetchType.EAGER)

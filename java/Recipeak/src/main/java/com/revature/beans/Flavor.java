@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 public class Flavor {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="flavor_profile")
-	@SequenceGenerator(name="flavor_profile", sequenceName="flavor_profile_seq", allocationSize=1)
+	@SequenceGenerator(name="flavor_profile", sequenceName="flavor_profile_sq", allocationSize=1)
 	@Column(name="flavor_id")
 	private int id;
 	private String name;

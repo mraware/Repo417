@@ -2,7 +2,10 @@ package com.revature.beans;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.context.annotation.Scope;
@@ -13,6 +16,8 @@ import org.springframework.stereotype.Component;
 public class Recipe 
 {
 	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="recipe")
+	@SequenceGenerator(name="recipe", sequenceName="recipe_sq", allocationSize=1)
 	@Column(name = "recipe_ID")
 	int recipeID;
 	@Column(name = "name")

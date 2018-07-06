@@ -20,8 +20,8 @@ import org.springframework.stereotype.Component;
 @Table(name="Preferences")
 public class Preference {
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="history")
-	@SequenceGenerator(name="history", sequenceName="history_seq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="preferences")
+	@SequenceGenerator(name="preferences", sequenceName="preferences_sq", allocationSize=1)
 	@Column(name="preference_id")
 	private int id;
 	@ManyToOne(fetch=FetchType.LAZY)
