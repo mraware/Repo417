@@ -3,8 +3,9 @@ package com.revature.data;
 import java.util.List;
 
 import com.revature.beans.Recipe;
+import com.revature.beans.RecipeIngredient;
 
-public interface SearchDao {
+public interface SearchService {
 // contains all the ingredients listed
 	List<Recipe> getContains(List<Integer> ingredientIds);
 
@@ -12,16 +13,19 @@ public interface SearchDao {
 	List<Recipe> getMadeFrom(List<Integer> ingredientIds);
 
 // contains the string in the name
-	List<Recipe> getName(String name);
+	List<Recipe> getRecipeByName(String name);
 
 // has this flavor profile
-	List<Recipe> getFlavor(int flavorId);
+	List<Recipe> getRecipeByFlavor(int flavorId);
 
 // created by this user
-	List<Recipe> getByUser(int userId);
+	List<Recipe> getRecipeByUser(int userId);
 	
 // gets all recipes
-	List<Recipe> getAll();
+	List<Recipe> getAllRecipes();
+	
+// gets all recipe ingredients
+	List<RecipeIngredient> getAllRecipeIngredients();
 }
 
 /*containing ingredients!

@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "recipe_ingredients")
-public class RecipeIngredients {
+public class RecipeIngredient {
 	@Id
 	@Column(name = "recipeingredient_id")
 	int recipeIngredientId;
@@ -39,7 +39,7 @@ public class RecipeIngredients {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		RecipeIngredients other = (RecipeIngredients) obj;
+		RecipeIngredient other = (RecipeIngredient) obj;
 		if (Double.doubleToLongBits(amount) != Double.doubleToLongBits(other.amount))
 			return false;
 		if (ingredient != other.ingredient)
@@ -60,11 +60,11 @@ public class RecipeIngredients {
 		return "RecipeIngredients [recipeIngredientId=" + recipeIngredientId + ", recipeId=" + recipeId
 				+ ", ingredient=" + ingredient + ", amount=" + amount + ", unit=" + unit + "]";
 	}
-	public RecipeIngredients() {
+	public RecipeIngredient() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public RecipeIngredients(int recipeIngredientId, int recipeId, int ingredient, double amount, String unit) {
+	public RecipeIngredient(int recipeIngredientId, int recipeId, int ingredient, double amount, String unit) {
 		super();
 		this.recipeIngredientId = recipeIngredientId;
 		this.recipeId = recipeId;
