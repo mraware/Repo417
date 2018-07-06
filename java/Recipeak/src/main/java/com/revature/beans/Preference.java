@@ -16,14 +16,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component
-@Scope(scopeName="prototype")
 @Entity
 @Table(name="Preferences")
 public class Preference {
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="history")
-	@SequenceGenerator(name="history", sequenceName="history_seq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="preferences")
+	@SequenceGenerator(name="preferences", sequenceName="preferences_sq", allocationSize=1)
 	@Column(name="preference_id")
 	private int id;
 	@ManyToOne(fetch=FetchType.LAZY)
@@ -36,7 +34,6 @@ public class Preference {
 	public Preference() {
 		super();
 	}
-	@Autowired
 	public Preference(int id, User user, Flavor flavor, int score) {
 		super();
 		this.id = id;
