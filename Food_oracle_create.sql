@@ -11,15 +11,6 @@ drop table recipe;
 drop table recipeak_user;
 drop table flavor_profile;
 
-drop sequence preferences_seq;
-drop sequence instructions_seq;
-drop sequence recipe_ingredients_seq;
-drop sequence ingredient_seq;
-drop sequence history_seq;
-drop sequence recipe_seq;
-drop sequence user_seq;
-drop sequence flavor_profile_seq;
-
 CREATE TABLE Recipeak_User (
 	User_id number(10),
 	Type varchar2(20),
@@ -28,14 +19,6 @@ CREATE TABLE Recipeak_User (
 	Firstname varchar2(30),
 	Lastname varchar2(30),
 	constraint USER_PK PRIMARY KEY (User_id));
-CREATE sequence USER_SEQ
-/
-CREATE trigger BI_USER
-  before insert on Recipeak_USER
-  for each row
-begin
-  select USER_SEQ.nextval into :NEW.User_id from dual;
-end;
 /
 
 CREATE TABLE Recipe (
@@ -48,14 +31,6 @@ CREATE TABLE Recipe (
 	Promoted number(2),
 	Notes varchar2(400),
 	constraint RECIPE_PK PRIMARY KEY (Recipe_id));
-CREATE sequence RECIPE_SEQ
-/
-CREATE trigger BI_RECIPE
-  before insert on RECIPE
-  for each row
-begin
-  select RECIPE_SEQ.nextval into :NEW.Recipe_id from dual;
-end;
 /
 
 CREATE TABLE Recipe_Ingredients (
@@ -65,14 +40,6 @@ CREATE TABLE Recipe_Ingredients (
 	Amount number(10),
 	Unit varchar2(30),
 	constraint RECIPE_INGREDIENTS_PK PRIMARY KEY (RecipeIngredient_id));
-CREATE sequence RECIPE_INGREDIENTS_SEQ
-/
-CREATE trigger BI_RECIPE_INGREDIENTS
-  before insert on RECIPE_INGREDIENTS
-  for each row
-begin
-  select RECIPE_INGREDIENTS_SEQ.nextval into :NEW.RecipeIngredient_id from dual;
-end;
 /
 
 CREATE TABLE Instructions (
@@ -81,28 +48,12 @@ CREATE TABLE Instructions (
 	Step_Number number(10),
 	Step varchar2(500),
 	constraint INSTRUCTIONS_PK PRIMARY KEY (Instruction_id));
-CREATE sequence INSTRUCTIONS_SEQ
-/
-CREATE trigger BI_INSTRUCTIONS
-  before insert on INSTRUCTIONS
-  for each row
-begin
-  select INSTRUCTIONS_SEQ.nextval into :NEW.Instruction_id from dual;
-end;
 /
 
 CREATE TABLE Flavor_Profile (
 	Flavor_id number(10),
 	Name varchar2(20),
 	constraint FLAVOR_PROFILE_PK PRIMARY KEY (Flavor_id));
-CREATE sequence FLAVOR_PROFILE_SEQ
-/
-CREATE trigger BI_FLAVOR_PROFILE
-  before insert on FLAVOR_PROFILE
-  for each row
-begin
-  select FLAVOR_PROFILE_SEQ.nextval into :NEW.Flavor_id from dual;
-end;
 /
 
 CREATE TABLE History (
@@ -113,14 +64,6 @@ CREATE TABLE History (
 	Score number(20),
 	Review varchar2(400),
 	constraint HISTORY_PK PRIMARY KEY (History_id));
-CREATE sequence HISTORY_SEQ
-/
-CREATE trigger BI_HISTORY
-  before insert on HISTORY
-  for each row
-begin
-  select HISTORY_SEQ.nextval into :NEW.History_id from dual;
-end;
 /
 
 CREATE TABLE Preferences (
@@ -129,28 +72,12 @@ CREATE TABLE Preferences (
 	Flavor number(10),
 	Score number(5),
 	constraint PREFERENCES_PK PRIMARY KEY (Preferences_id));
-CREATE sequence PREFERENCES_SEQ
-/
-CREATE trigger BI_PREFERENCES
-  before insert on PREFERENCES
-  for each row
-begin
-  select PREFERENCES_SEQ.nextval into :NEW.Preferences_id from dual;
-end;
 /
 
 CREATE TABLE Ingredient (
 	Ingredient_id number(10),
 	Ingredient varchar2(50),
 	constraint INGREDIENT_PK PRIMARY KEY (Ingredient_id));
-CREATE sequence INGREDIENT_SEQ
-/
-CREATE trigger BI_INGREDIENT
-  before insert on INGREDIENT
-  for each row
-begin
-  select INGREDIENT_SEQ.nextval into :NEW.Ingredient_id from dual;
-end;
 /
 
 
