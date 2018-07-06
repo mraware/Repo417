@@ -15,8 +15,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.revature.beans.Flavor;
 import com.revature.beans.History;
+import com.revature.beans.Recipe;
 import com.revature.data.HistoryDAO;
 import com.revature.data.HistoryHibernateDAO;
+import com.revature.data.RecipeDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/beans.xml"})
@@ -48,5 +50,28 @@ public class DAOTests {
 		assertFalse(h==null);
 	}
 	
+	/**** RECIPE TESTS *****/
 	
+	@Autowired 
+	RecipeDAO rd;
+	
+	@Test
+	public void recipeDAO() {
+		assertFalse(rd == null);
+	}
+	
+	@Test
+	public void recipeDAOGet() {
+		Recipe r = rd.getById(1);
+		assertFalse(r == null);
+	}
+	
+	@Test 
+	public void recipeDAOStore() {
+		// how hard does this statement fail?
+		Recipe r = (Recipe) ac.getBean(Recipe.class);
+		rd.create(r);
+		assertFalse(r == null);
+		
+	}
 }
