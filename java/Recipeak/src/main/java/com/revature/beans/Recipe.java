@@ -41,7 +41,6 @@ public class Recipe
 	public Recipe() {
 		super();
 	}
-	@Autowired
 	public Recipe(int recipeId, String name, Flavor flavor, User creator, String privacy, int burns, int promoted,
 			String notes) {
 		super();
