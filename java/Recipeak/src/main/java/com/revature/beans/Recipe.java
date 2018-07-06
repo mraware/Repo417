@@ -5,13 +5,22 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+@Component
+@Scope(scopeName="prototype")
 @Entity
 @Table(name = "recipe")
 public class Recipe 
 {
 	@Id
+<<<<<<< HEAD
 	@Column(name = "recipe_id")
 	private int recipeId;
+=======
+	@Column(name = "recipe_ID")
+	int recipeID;
+>>>>>>> e1947b990c7f536a0312eae6f0f4bf755a346cbd
 	@Column(name = "name")
 	private String name;
 	@Column(name = "flavor")
