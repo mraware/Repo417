@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import com.revature.beans.Recipe;
 
 @Component
-public class RecipeHibernate implements RecipeDao, HibernateSession {
+public class RecipeHibernateDAO implements RecipeDAO, HibernateSession {
 	private Session session;
 	
 	@Override
@@ -17,7 +17,7 @@ public class RecipeHibernate implements RecipeDao, HibernateSession {
 	}
 
 	@Override
-	public Recipe save(Recipe b) {
+	public Recipe create(Recipe b) {
 		session.save(b);
 		return b;
 	}

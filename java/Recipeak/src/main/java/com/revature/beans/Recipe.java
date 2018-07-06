@@ -7,46 +7,46 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-//@Entity
 @Component
+@Scope(scopeName="prototype")
+@Entity
 @Table(name = "recipe")
 public class Recipe 
 {
 	@Id
-	@Column(name = "recipeID")
-	@SequenceGenerator(name="repId", sequenceName="RECIPE_SEQ", allocationSize=1)
-	@GeneratedValue(generator="redId", strategy=GenerationType.SEQUENCE)
-	int recipeID;
-	@Column(name = "name")
+	@Column(name = "recipeId")
+	@SequenceGenerator(name="recId", sequenceName="RECIPE_SEQ", allocationSize=1)
+	@GeneratedValue(generator="recId", strategy=GenerationType.SEQUENCE)
+	int recipeId;
 	String name;
-	@Column(name = "flavor")
+	@JoinColumn(name="flavor_id", insertable=false, updatable=false)
+	@OneToOne(fetch=FetchType.EAGER)
 	int flavor;
-	@Column(name = "creator")
+	@JoinColumn(name="user_id", insertable=false, updatable=false)
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	int creator;
-	@Column(name = "privacy")
 	String privacy;
-	@Column(name = "burns")
 	int burns;
-	@Column(name = "promoted")
 	int promoted;
-	@Column(name = "notes")
 	String notes;
 	public Recipe() {
 		super();
 	}
 	@Autowired
-	public Recipe(int recipeID, String name, int flavor, int creator, String privacy, int burns, int promoted,
+	public Recipe(int recipeId, String name, int flavor, int creator, String privacy, int burns, int promoted,
 			String notes) {
 		super();
-		this.recipeID = recipeID;
+		this.recipeId = recipeId;
 		this.name = name;
 		this.flavor = flavor;
 		this.creator = creator;
@@ -56,6 +56,54 @@ public class Recipe
 		this.notes = notes;
 	}
 	
+	public int getRecipeId() {
+		return recipeId;
+	}
+	public void setRecipeId(int recipeId) {
+		this.recipeId = recipeId;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getFlavor() {
+		return flavor;
+	}
+	public void setFlavor(int flavor) {
+		this.flavor = flavor;
+	}
+	public int getCreator() {
+		return creator;
+	}
+	public void setCreator(int creator) {
+		this.creator = creator;
+	}
+	public String getPrivacy() {
+		return privacy;
+	}
+	public void setPrivacy(String privacy) {
+		this.privacy = privacy;
+	}
+	public int getBurns() {
+		return burns;
+	}
+	public void setBurns(int burns) {
+		this.burns = burns;
+	}
+	public int getPromoted() {
+		return promoted;
+	}
+	public void setPromoted(int promoted) {
+		this.promoted = promoted;
+	}
+	public String getNotes() {
+		return notes;
+	}
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -67,7 +115,7 @@ public class Recipe
 		result = prime * result + ((notes == null) ? 0 : notes.hashCode());
 		result = prime * result + ((privacy == null) ? 0 : privacy.hashCode());
 		result = prime * result + promoted;
-		result = prime * result + recipeID;
+		result = prime * result + recipeId;
 		return result;
 	}
 	@Override
@@ -102,13 +150,13 @@ public class Recipe
 			return false;
 		if (promoted != other.promoted)
 			return false;
-		if (recipeID != other.recipeID)
+		if (recipeId != other.recipeId)
 			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "Recipe [recipeID=" + recipeID + ", name=" + name + ", flavor=" + flavor + ", creator=" + creator
+		return "Recipe [recipeId=" + recipeId + ", name=" + name + ", flavor=" + flavor + ", creator=" + creator
 				+ ", privacy=" + privacy + ", burns=" + burns + ", promoted=" + promoted + ", notes=" + notes + "]";
 	}
 	

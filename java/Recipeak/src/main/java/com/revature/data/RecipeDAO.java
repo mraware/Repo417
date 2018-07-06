@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.revature.beans.Recipe;
 
-public interface RecipeDao {
-	Recipe save(Recipe r);
+public interface RecipeDAO {
+	Recipe create(Recipe r);
 	List<Recipe> getAll();
 	Recipe getById(int i);
 	Recipe update(Recipe r);
