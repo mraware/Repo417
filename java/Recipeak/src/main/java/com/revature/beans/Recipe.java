@@ -24,15 +24,15 @@ public class Recipe
 {
 	@Id
 	@Column(name = "recipe_id")
-	@SequenceGenerator(name="recId", sequenceName="RECIPE_SEQ", allocationSize=1)
+	@SequenceGenerator(name="recId", sequenceName="RECIPE_SQ", allocationSize=1)
 	@GeneratedValue(generator="recId", strategy=GenerationType.SEQUENCE)
 	private int recipeId;
 	private String name;
 	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="flavor_id", insertable=false, updatable=false)
+	@JoinColumn(name="flavor", insertable=false, updatable=false)
 	private Flavor flavor;
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="user_id", insertable=false, updatable=false)
+	@JoinColumn(name="creator", insertable=false, updatable=false)
 	private User creator;
 	private String privacy;
 	private int burns;

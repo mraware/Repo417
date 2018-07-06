@@ -67,11 +67,24 @@ public class DAOTests {
 	}
 	
 	@Test 
-	public void recipeDAOStore() {
-		// how hard does this statement fail?
-		Recipe r = (Recipe) ac.getBean(Recipe.class);
+	public void recipeDAOCreate() {
+		Recipe r = new Recipe();
 		rd.create(r);
-		assertFalse(r == null);
-		
+		assertFalse(r == null);	
 	}
+	
+	@Test
+	public void recipeDAOGetAll() {
+		assertFalse(rd.getAll().isEmpty());
+	}
+
+	@Test
+	public void recipeDAODelete() {
+		Recipe r = new Recipe();
+		r = rd.create(r);
+		rd.delete(r);
+		assertTrue(rd.getById(r.getRecipeId()) == null);
+	}
+	
+	// TODO : write a test for recipeDAOUpdate
 }
