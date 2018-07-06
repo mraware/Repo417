@@ -2,6 +2,7 @@ package com.revature.data;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.springframework.stereotype.Component;
 
@@ -12,9 +13,11 @@ import com.revature.beans.User;
 @Component
 public class HistoryHibernateDAO implements HistoryDAO, HibernateSession {
 	private volatile Session session;
+	Logger log = Logger.getLogger(HistoryHibernateDAO.class);
 
 	@Override
 	public History addHistory(History history) {
+		log.debug("Adding history " + history);
 		session.save(history);
 		return history;
 		

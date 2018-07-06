@@ -13,10 +13,15 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+=======
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+>>>>>>> e1947b990c7f536a0312eae6f0f4bf755a346cbd
 @Component
 @Scope(scopeName="prototype")
 @Entity
@@ -24,7 +29,7 @@ import org.springframework.stereotype.Component;
 public class Recipe 
 {
 	@Id
-	@Column(name = "recipeId")
+	@Column(name = "recipe_id")
 	@SequenceGenerator(name="recId", sequenceName="RECIPE_SEQ", allocationSize=1)
 	@GeneratedValue(generator="recId", strategy=GenerationType.SEQUENCE)
 	int recipeId;
