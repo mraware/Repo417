@@ -35,7 +35,20 @@ public class SearchHibernate implements SearchDao, HibernateSession {
 
 	@Override
 	public List<Recipe> getMadeFrom(List<Integer> ingredientIds) {
-		return null;
+		List<Recipe> outputList = new ArrayList<Recipe>();
+		int ingredients;
+		for(int i = 0; i < getAll().size(); i++) {
+			ingredients = 0;
+			for(int j = 0; j < ingredientIds.size(); j++) {
+				if(true /* the ingredient is in the list = true */) {
+					ingredients++;
+				}
+			}
+			if(ingredients == getAll().get(i).getIngredients().size()) {
+				outputList.add(getAll().get(i));
+			}
+		}
+		return outputList;
 	}
 
 	@Override
