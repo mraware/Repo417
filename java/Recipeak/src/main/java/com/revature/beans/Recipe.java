@@ -16,8 +16,7 @@ import javax.persistence.Table;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-@Component
-@Scope(scopeName="prototype")
+
 @Entity
 @Table(name = "recipe")
 public class Recipe 

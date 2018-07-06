@@ -8,33 +8,29 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
 @Entity
-@Table(name="Flavor_Profile")
-public class Flavor {
+@Table(name="Ingredient")
+public class Ingredient {
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="flavor_profile")
-	@SequenceGenerator(name="flavor_profile", sequenceName="flavor_profile_sq", allocationSize=1)
-	@Column(name="flavor_id")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ingredient")
+	@SequenceGenerator(name="ingredient", sequenceName="ingredient_sq", allocationSize=1)
+	@Column(name="Ingredient_id")
 	private int id;
-	private String name;
-	public Flavor() {
+	private String ingredient;
+	public Ingredient() {
 		super();
 	}
-	public Flavor(int id, String name) {
+	public Ingredient(int id, String ingredient) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.ingredient = ingredient;
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((ingredient == null) ? 0 : ingredient.hashCode());
 		return result;
 	}
 	@Override
@@ -45,19 +41,19 @@ public class Flavor {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Flavor other = (Flavor) obj;
+		Ingredient other = (Ingredient) obj;
 		if (id != other.id)
 			return false;
-		if (name == null) {
-			if (other.name != null)
+		if (ingredient == null) {
+			if (other.ingredient != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!ingredient.equals(other.ingredient))
 			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "Flavor [id=" + id + ", name=" + name + "]";
+		return "Ingredient [id=" + id + ", ingredient=" + ingredient + "]";
 	}
 	public int getId() {
 		return id;
@@ -65,10 +61,11 @@ public class Flavor {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getIngredient() {
+		return ingredient;
 	}
-	public void setName(String name) {
-		this.name = name;
-	}	
+	public void setIngredient(String ingredient) {
+		this.ingredient = ingredient;
+	}
+
 }
