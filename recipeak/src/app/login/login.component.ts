@@ -19,10 +19,10 @@ export class LoginComponent implements OnInit
  letMeIn()
  {
    console.log("2");
-   this.username = document.getElementById("username").value;
+   this.username = (<HTMLInputElement>document.getElementById("username")).value;
    console.log(this.username);
-   this.password = document.getElementById("password").value;
+   this.password = (<HTMLInputElement>document.getElementById("password")).value;
    console.log(this.password);
-
+  
  }
 }
