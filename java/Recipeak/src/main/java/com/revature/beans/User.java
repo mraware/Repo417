@@ -3,16 +3,18 @@ package com.revature.beans;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 @Component
 @Scope(scopeName="prototype")
 @Entity
+@Table(name = "recipeak_user")
 public class User 
 {
 	@Id
-	@Column(name = "userID")
+	@Column(name = "user_id")
 	private int userId;
 	@Column(name = "type")
 	private String type;

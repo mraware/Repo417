@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class Recipe 
 {
 	@Id
-	@Column(name = "recipeID")
+	@Column(name = "recipe_ID")
 	int recipeID;
 	@Column(name = "name")
 	String name;

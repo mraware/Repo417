@@ -38,14 +38,13 @@ public class DAOTests {
 	@Test 
 	public void historyDAOGet() {
 		History h = hd.getHistoryById(1);
-		if (h == null) {
-			System.out.println("Making h");
-			h = ac.getBean(History.class,1,null,null,1,1,"ok");
-			System.out.println(h);
-			h = hd.addHistory(h);
-			h = hd.getHistoryById(h.getId());
-		}
-		System.out.println(h);
+		assertFalse(h==null);
+	}
+	
+	@Test 
+	public void historyDAOStore() {
+		History h = new History();
+		hd.addHistory(h);
 		assertFalse(h==null);
 	}
 	
