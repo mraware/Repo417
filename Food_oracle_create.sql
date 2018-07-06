@@ -11,6 +11,24 @@ drop table recipe;
 drop table recipeak_user;
 drop table flavor_profile;
 
+drop sequence recipeak_user_sq;
+drop sequence flavor_profile_sq;
+drop sequence recipe_sq;
+drop sequence history_sq;
+drop sequence ingredient_sq;
+drop sequence recipe_ingredients_sq;
+drop sequence instructions_sq;
+drop sequence preferences_sq;
+
+create sequence recipeak_user_sq start with 17;
+create sequence flavor_profile_sq start with 16;
+create sequence recipe_sq start with 7;
+create sequence history_sq;
+create sequence ingredient_sq start with 43;
+create sequence recipe_ingredients_sq start with 53;
+create sequence instructions_sq start with 25;
+create sequence preferences_sq;
+
 CREATE TABLE Recipeak_User (
 	User_id number(10),
 	Type varchar2(20),
