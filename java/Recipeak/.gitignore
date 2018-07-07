@@ -63,3 +63,8 @@ typescript/
 package-lock.json
 bstore/
 target/
+src/main/resources/hibernate.cfg.xml/target/
+.classpath-bk
+.project
+.springBeans
+.settings
