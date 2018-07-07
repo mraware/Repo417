@@ -1,9 +1,11 @@
 package com.revature.data;
 
 import org.hibernate.Session;
+import org.springframework.stereotype.Component;
 
 import com.revature.beans.User;
 
+@Component
 public class UserHibernateDAO implements UserDAO, HibernateSession 
 {
 	private volatile Session session;
