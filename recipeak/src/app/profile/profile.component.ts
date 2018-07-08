@@ -22,6 +22,25 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  promoteUser() {
+    this.profile.type = 'star';
+    this.ps.updateUser(this.profile).subscribe(
+      profile => this.profile = profile);
+
+  }
+
+  banUser() {
+    this.profile.type = 'banned';
+    this.ps.updateUser(this.profile).subscribe(
+      profile => this.profile = profile);
+  }
+
+  unbanUser() {
+    this.profile.type = 'user';
+    this.ps.updateUser(this.profile).subscribe(
+      profile => this.profile = profile);
+  }
+
 }
 
 export interface Profile {
