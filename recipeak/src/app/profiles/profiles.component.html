@@ -1,0 +1,18 @@
+<div class="table-responsive">
+<table class="table table-hover">
+  <tr>
+    <th>ID</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Status</th>
+    <th></th>
+  </tr>
+  <tr *ngFor="let profile of profiles">
+    <td>{{profile.userId}}</td>
+    <td>{{profile.firstName}}</td>
+    <td>{{profile.lastName}}</td>
+    <td>{{profile.type}}</td>
+    <td><button class="btn btn-primary btn-sm" (click)="viewProfile(profile.userId)">View</button></td>
+  </tr>
+</table>
+</div>

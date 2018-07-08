@@ -3,6 +3,9 @@ package com.revature.test;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
+
+import org.apache.log4j.Logger;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,17 +19,23 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.revature.beans.Flavor;
 import com.revature.beans.History;
 import com.revature.beans.Recipe;
+import com.revature.beans.User;
 import com.revature.data.HistoryDAO;
 import com.revature.data.HistoryHibernateDAO;
 import com.revature.data.RecipeDAO;
+import com.revature.data.UserDAO;
+import com.revature.data.UserHibernateDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/beans.xml"})
 public class DAOTests {
+	Logger log = Logger.getLogger(DAOTests.class);
 	@Autowired
 	ApplicationContext ac;
 	@Autowired
 	HistoryDAO hd;
+	@Autowired
+	UserDAO ud;
 	
 	@BeforeClass
 	public static void methodCalledBeforeAllTests() {
@@ -95,4 +104,21 @@ public class DAOTests {
 	}
 	
 	// TODO : write a test for recipeDAOUpdate
+
+	
+	@Test
+	public void userDAOTest() {
+		User user = ud.getUserById(1);
+		log.trace(user);
+		assertFalse(user == null);
+	}
+	
+	@Test
+	public void historyDAOByIdTest() {
+		User user = ud.getUserById(1);
+		log.trace(user);
+		List<History> history = hd.historyByUser(user);
+		log.trace(history);
+		assertFalse(history == null);
+	}
 }
