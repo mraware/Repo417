@@ -12,6 +12,6 @@ export class RecipeService {
   constructor() { }
 
   getRecipes(): Observable<Recipe[]> {
-	return of(RECIPES);
+    return of(RECIPES);
   }
 }

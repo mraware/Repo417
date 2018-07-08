@@ -2,8 +2,11 @@ package com.revature.data;
 
 import java.util.List;
 
+
+
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Component;
 
 
@@ -49,7 +52,10 @@ public class HistoryHibernateDAO implements HistoryDAO, HibernateSession {
 	@Override
 	public List<History> historyByUser(User user) {
 		//TODO: finish query on history by user
-		return (List<History>) session.createQuery("From com.revature.beans.History hist where", History.class).list();
+		// (List<History>) session.createQuery("From com.revature.beans.History hist where hist.user=:user", History.class).list();
+		Query query = session.createQuery("FROM com.revature.beans.History hist WHERE hist.user=:user");
+		query.setParameter("user", user);
+		return (List<History>) query.list();
 	}
 
 }

@@ -8,7 +8,13 @@
             <span *ngIf="profile.type == 'user'">
               <button class="btn btn-success btn-sm" (click)="promoteUser()">Promote</button>
             </span>
-            <button class="btn btn-danger btn-sm" (click)="banUser()">Ban</button>
+            <span *ngIf="profile.type != 'banned';then banButton else unbanButton">stuff</span>
+            <ng-template #banButton>
+              <button class="btn btn-danger btn-sm" (click)="banUser()">Ban</button>
+            </ng-template>
+            <ng-template #unbanButton>
+              <button class="btn btn-secondary btn-sm" (click)="unbanUser()">Unban</button>
+            </ng-template>
           </span>
         </td>
       </tr>
