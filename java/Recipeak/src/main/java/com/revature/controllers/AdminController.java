@@ -18,6 +18,7 @@ import com.revature.services.UserService;
 @Controller
 @RequestMapping(value="/admin")
 public class AdminController {
+	//comment
 	ObjectMapper om = new ObjectMapper();
 	Logger log = Logger.getLogger(UserController.class);
 	
