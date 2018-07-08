@@ -11,11 +11,6 @@ import { RecipeService } from '../recipe.service';
 })
 export class RecipeComponent implements OnInit {
   recipes: Recipe[]; 
-  selectedRecipe: Recipe;
-
-  onSelect(recipe: Recipe): void {
-	this.selectedRecipe = recipe;
-  }
 
   constructor(private recipeService: RecipeService) { }
 
