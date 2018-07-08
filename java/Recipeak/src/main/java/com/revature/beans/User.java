@@ -2,13 +2,23 @@ package com.revature.beans;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 @Entity
+@Table(name = "recipeak_user")
 public class User 
 {
 	@Id
-	@Column(name = "userID")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="recipeak_user")
+	@SequenceGenerator(name="recipeak_user", sequenceName="recipeak_user_sq", allocationSize=1)
+	@Column(name = "user_id")
 	private int userId;
 	@Column(name = "type")
 	private String type;
