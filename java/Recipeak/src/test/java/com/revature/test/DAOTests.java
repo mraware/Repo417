@@ -3,6 +3,8 @@ package com.revature.test;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -109,5 +111,14 @@ public class DAOTests {
 		User user = ud.getUserById(1);
 		log.trace(user);
 		assertFalse(user == null);
+	}
+	
+	@Test
+	public void historyDAOByIdTest() {
+		User user = ud.getUserById(1);
+		log.trace(user);
+		List<History> history = hd.historyByUser(user);
+		log.trace(history);
+		assertFalse(history == null);
 	}
 }
