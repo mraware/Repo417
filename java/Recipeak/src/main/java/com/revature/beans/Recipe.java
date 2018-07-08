@@ -164,5 +164,5 @@ public class Recipe
 	public String toString() {
 		return "Recipe [recipeId=" + recipeId + ", name=" + name + ", flavor=" + flavor + ", creator=" + creator
 				+ ", privacy=" + privacy + ", burns=" + burns + ", promoted=" + promoted + ", notes=" + notes + "]";
-	}
+	}	
 }
