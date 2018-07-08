@@ -28,3 +28,6 @@ hs_err_pid*
 #eclipse specific stuff
 .classpath*
 .setting/*
+
+#vim tmp files
+*.swp
