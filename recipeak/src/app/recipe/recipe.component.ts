@@ -10,12 +10,7 @@ import { RecipeService } from '../recipe.service';
   styleUrls: ['./recipe.component.css']
 })
 export class RecipeComponent implements OnInit {
-    recipes: Recipe[];
-    selectedRecipe: Recipe;
-
-    onSelect(recipe: Recipe): void {
-    this.selectedRecipe = recipe;
-  }
+  recipes: Recipe[]; 
 
   constructor(private recipeService: RecipeService) { }
 

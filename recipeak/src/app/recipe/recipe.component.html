@@ -1,21 +1,14 @@
 <h2>Recipes!</h2>
+<!-- this currently does nothing...-->
 <label>Create a new recipe
 	<input type="submit" value="Click Here">
 </label>
 
 <ul class="recipes">
-	<li *ngFor="let recipe of recipes"
-	[class.selected]="recipe === selectedRecipe"	
-	(click)="onSelect(recipe)">
-		<span class="badge">{{recipe.id}}</span> {{recipe.name}}
+	<li *ngFor="let recipe of recipes">
+		{{recipe.name}}
+		<!--<a routerLink=="/detail/{{recipe.id}}">
+			<span class="badge">{{recipe.id}}</span> {{recipe.name}}
+		</a>-->
 	</li>
-</ul>
-<div *ngIf="selectedRecipe">
-
-  <h2>{{selectedRecipe.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{selectedRecipe.id}}</div>
-  <div><span>name: </span>{{selectedRecipe.name}}</div>
-  <div><span>Ingredients: </span>{{selectedRecipe.ingredients}}</div>
-  <div><span>Instructions: </span>{{selectedRecipe.instructions}}</div>
-  
-</div> 
+</ul> 
