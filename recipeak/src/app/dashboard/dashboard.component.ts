@@ -14,11 +14,11 @@ export class DashboardComponent implements OnInit {
   constructor(private recipeService: RecipeService) { }
 
   ngOnInit() {
-	this.getRecipes();
+    this.getRecipes();
   }
 
   getRecipes(): void {
-	this.recipeService.getRecipes()
-	  .subscribe(recipes => this.recipes = recipes.slice(1,1));
+  this.recipeService.getRecipes()
+    .subscribe(recipes => this.recipes = recipes.slice(1, 1));
   }
 }

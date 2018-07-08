@@ -10,21 +10,21 @@ import { RecipeService } from '../recipe.service';
   styleUrls: ['./recipe.component.css']
 })
 export class RecipeComponent implements OnInit {
-  recipes: Recipe[]; 
-  selectedRecipe: Recipe;
+    recipes: Recipe[];
+    selectedRecipe: Recipe;
 
-  onSelect(recipe: Recipe): void {
-	this.selectedRecipe = recipe;
+    onSelect(recipe: Recipe): void {
+    this.selectedRecipe = recipe;
   }
 
   constructor(private recipeService: RecipeService) { }
 
   ngOnInit() {
-	this.getRecipes();
+    this.getRecipes();
   }
 
   getRecipes(): void {
-	this.recipeService.getRecipes()
-	  .subscribe(recipes => this.recipes = recipes);
+    this.recipeService.getRecipes()
+      .subscribe(recipes => this.recipes = recipes);
   }
 }
