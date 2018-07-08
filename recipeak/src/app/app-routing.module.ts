@@ -11,7 +11,7 @@ const routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'recipes', component: RecipeComponent },
-  { path: 'detail/:id', component: RecipeDetailComponent }
+  { path: 'detail/:id', component: RecipeDetailComponent },
   { path: 'profile/:id', component: ProfileComponent },
   { path: 'profiles', component: ProfilesComponent }
 ];

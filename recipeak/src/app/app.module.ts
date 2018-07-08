@@ -10,7 +10,6 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { ProfileService } from './profile.service';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [

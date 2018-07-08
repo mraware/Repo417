@@ -3,10 +3,12 @@ package com.revature.controllers;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.services.RecipeService;
 
@@ -23,8 +25,8 @@ public class RecipeController {
 	@ResponseBody
 	public String getUsers() {
 		try {
-			log.debug(rs.getAllUsers());
-			return om.writeValueAsString(rs.getAllUsers());
+			log.debug(rs.getAllRecipes());
+			return om.writeValueAsString(rs.getAllRecipes());
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -35,8 +37,8 @@ public class RecipeController {
 	@ResponseBody
 	public String getUser(@PathVariable(value="id") int id) {
 		try {
-			log.debug(us.getUserById(id));
-			return om.writeValueAsString(us.getById(id));
+			log.debug(rs.getRecipeById(id));
+			return om.writeValueAsString(rs.getRecipeById(id));
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 			return null;
