@@ -15,8 +15,9 @@ import com.revature.util.HibernateUtil;
 @Component
 public class UserHibernateDAO implements UserDAO, HibernateSession 
 {
+
 	HibernateUtil hu = new HibernateUtil();
-	private volatile Session session = hu.getHibernateSession();
+	private volatile Session session;
 
 	@Override
 	public User addUser(User user) 
@@ -68,4 +69,8 @@ public class UserHibernateDAO implements UserDAO, HibernateSession
 		this.session = session;	
 	}
 
+	@Override
+	public List<User> getAllUsers() {
+		return session.createQuery("from User", User.class).list();
+	}
 }
