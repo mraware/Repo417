@@ -1,0 +1,32 @@
+<div class="table-responsive" *ngIf="profile">
+    <table class="table table-hover">
+      <tr>
+        <td>{{profile.username}}</td>
+        <td>
+          <!-- TODO only show if user is admin -->
+          <span *ngIf="true">
+            <span *ngIf="profile.type == 'user'">
+              <button class="btn btn-success btn-sm" (click)="promoteUser()">Promote</button>
+            </span>
+            <span *ngIf="profile.type != 'banned';then banButton else unbanButton">stuff</span>
+            <ng-template #banButton>
+              <button class="btn btn-danger btn-sm" (click)="banUser()">Ban</button>
+            </ng-template>
+            <ng-template #unbanButton>
+              <button class="btn btn-secondary btn-sm" (click)="unbanUser()">Unban</button>
+            </ng-template>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>{{profile.firstName}}</td>
+        <td>{{profile.lastName}}</td>
+      </tr>
+      <tr>
+        <!-- TODO: Recipe list, Review list-->
+        <td>Recipes</td>
+        <td>Reviews</td>
+      </tr>
+    </table>
+    </div>
+    
