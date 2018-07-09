@@ -10,7 +10,7 @@ import org.hibernate.Session;
 import org.springframework.stereotype.Component;
 
 import com.revature.beans.User;
-import com.revature.util.HibernateUtil;
+import com.revature.utils.HibernateUtil;
 
 @Component
 public class UserHibernateDAO implements UserDAO, HibernateSession 
