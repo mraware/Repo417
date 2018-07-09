@@ -1,7 +1,6 @@
 package com.revature.data;
 
 import java.util.List;
-
 import com.revature.beans.User;
 
 public interface UserDAO 
