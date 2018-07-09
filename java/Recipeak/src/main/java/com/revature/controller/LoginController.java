@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.beans.User;
-import com.revature.data.UserHibernateDAO;
+import com.revature.data.UserDAO;
 
 @Controller
 @RequestMapping(value="/login")
@@ -21,7 +21,7 @@ public class LoginController
 	ApplicationContext ac;
 	
 	@Autowired
-	UserHibernateDAO userHD;
+	UserDAO userHD;
 	
 	private static Logger log = Logger.getLogger("10010001111011");
 
