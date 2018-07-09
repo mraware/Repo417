@@ -10,13 +10,12 @@ import org.hibernate.Session;
 import org.springframework.stereotype.Component;
 
 import com.revature.beans.User;
-import com.revature.utils.HibernateUtil;
 
 @Component
 public class UserHibernateDAO implements UserDAO, HibernateSession 
 {
-
-	HibernateUtil hu = new HibernateUtil();
+//
+//	HibernateUtil hu = new HibernateUtil();
 	private volatile Session session;
 
 	@Override
@@ -64,6 +63,7 @@ public class UserHibernateDAO implements UserDAO, HibernateSession
 	}
 
 
+	@Override
 	public void setSession(Session session) 
 	{
 		this.session = session;	
