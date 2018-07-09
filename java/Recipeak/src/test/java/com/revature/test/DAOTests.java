@@ -177,6 +177,7 @@ public class DAOTests {
 		List<Integer> inputList = new ArrayList<Integer>();
 		inputList.add(1);
 		assertTrue(null == ss.getMadeFrom(inputList));
+	}
 
 	
 	@Test
