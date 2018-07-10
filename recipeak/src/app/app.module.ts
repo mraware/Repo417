@@ -12,6 +12,7 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { ProfileService } from './profile.service';
+import { LogOutComponent } from './log-out/log-out.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ProfileService } from './profile.service';
     DashboardComponent,
     RecipeDetailComponent,
     ProfileComponent,
-    ProfilesComponent
+    ProfilesComponent,
+    LogOutComponent
   ],
   imports: [
     BrowserModule,
