@@ -10,12 +10,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.revature.beans.User;
+import com.revature.data.UserHibernateDAO;
+
 @Controller
 @RequestMapping(value="/login")
 public class LoginController 
 {
 	@Autowired
 	ApplicationContext ac;
+	
+	@Autowired
+	UserHibernateDAO userHD;
 	
 	private static Logger log = Logger.getLogger("10010001111011");
 
@@ -26,9 +32,11 @@ public class LoginController
 	@ResponseBody
 	public String goLogin(HttpSession session) 
 	{
-		String sacrificialLamb = "hi";
+		String username = (String) session.getAttribute("username");
+		String password = (String) session.getAttribute("password");
+		User u = userHD.getUserByUsernameAndPassword(username, password);
 		System.out.println("Log in controller is being accessed.");
-		
-		return sacrificialLamb;
+		session.setAttribute("user", u); 
+		return "redirect:home";
 	}
 }

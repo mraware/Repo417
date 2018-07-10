@@ -21,7 +21,7 @@ public class Instruction {
 	private int id;
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="recipe_id", insertable=false, updatable=false)
-	@Column(name="recipe_id")
+//	@Column(name="recipe_id")
 	private Recipe recipe;
 	@Column(name="step_number")
 	private int stepNumber;
