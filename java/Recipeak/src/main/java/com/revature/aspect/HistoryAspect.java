@@ -28,8 +28,8 @@ public class HistoryAspect {
 	
 	
 	//TODO: Test this
-	@Around("allVerifiedUser()")
-	public Object verifyUser(ProceedingJoinPoint pjp) throws Throwable {
+	@Around("addHistory()")
+	public Object addToHistory(ProceedingJoinPoint pjp) throws Throwable {
 		Object obj = null;
 		try {
 			obj = pjp.proceed();
@@ -41,6 +41,9 @@ public class HistoryAspect {
 			log.trace(Arrays.toString(args));
 			if (args[0] instanceof HttpSession) {
 				HttpSession session = (HttpSession) args[0];
+				if(args[1] instanceof Integer) {
+//					int 
+				}
 			}
 		}
 
