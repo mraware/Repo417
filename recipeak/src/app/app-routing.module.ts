@@ -7,6 +7,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { LoginComponent } from './login/login.component';
+import { HistoryComponent } from './history/history.component';
+
 
 const routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -16,6 +18,7 @@ const routes = [
   { path: 'profile/:id', component: ProfileComponent },
   { path: 'profiles', component: ProfilesComponent },
   { path: 'login', component: LoginComponent }
+  { path: 'profile/:id/history', component: HistoryComponent },
 ];
 
 @NgModule({
