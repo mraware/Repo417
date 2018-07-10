@@ -20,10 +20,10 @@ export class LogOutComponent implements OnInit
 
   EXIT()
  {
-  var myHeader = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-  this.http.delete(this.appUrl,body,{headers:myHeader}).pipe(map(resp => resp as User )).subscribe(resp => newFunction(resp, this.router));
-   this.http.delete(this.appUrl);
-   this.user=null;
+  //var myHeader = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+  //this.http.delete(this.appUrl,,{headers:myHeader}).pipe(map(resp => resp as User )).subscribe(resp => newFunction(resp, this.router));
+  // this.http.delete(this.appUrl);
+   //this.user=null;
  }
 
 }
