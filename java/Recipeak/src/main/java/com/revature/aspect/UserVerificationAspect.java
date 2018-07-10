@@ -56,7 +56,7 @@ public class UserVerificationAspect {
 		return null;
 	}
 	
-	@Around("allVerifiedAdmin()")
+	@Around("isAdmin()")
 	public Object verifyAdmin(ProceedingJoinPoint pjp) throws Throwable {
 		Object obj = null;
 		Object[] args = pjp.getArgs();
@@ -79,9 +79,33 @@ public class UserVerificationAspect {
 		return null;
 	}
 	
+	@Around("allIsUser()")
+	public Object isUser(ProceedingJoinPoint pjp) throws Throwable {
+		Object obj = null;
+		Object[] args = pjp.getArgs();
+		log.trace(Arrays.toString(args));
+		if (args[0] instanceof HttpSession) {
+			HttpSession session = (HttpSession) args[0];
+			User user = (User) session.getAttribute("user");
+			if (user != null) {
+				try {
+					obj = pjp.proceed();
+				} catch (Throwable e) {
+					throw e;
+				}
+				return obj;
+			}
+			
+		}
+		return null;
+	}
+	
 	@Pointcut("execution(* com.revature.controllers..verifiedUser*(..))")
 	public void allVerifiedUser() {}
 	
-	@Pointcut("execution(* com.revature.controllers..verifiedAdmin*(..))")
+	@Pointcut("execution(* com.revature.controllers..isAdmin*(..))")
 	public void allVerifiedAdmin() {}
+	
+	@Pointcut("execution(* com.revature.controllers..isUser*(..))")
+	public void allIsUser() {}
 }

@@ -25,10 +25,10 @@ public class Preference {
 	@Column(name="preference_id")
 	private int id;
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="user_id", insertable=false, updatable=false)
+	@JoinColumn(name="user_id", updatable=false)
 	private User user;
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="flavor_id", insertable=false, updatable=false)
+	@JoinColumn(name="flavor_id")
 	private Flavor flavor;
 	private int score;
 	public Preference() {
