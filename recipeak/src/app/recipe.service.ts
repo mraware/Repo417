@@ -12,18 +12,16 @@ import { RECIPES } from './mock-recipes';
 export class RecipeService {
   /* TODO fix this!!! */
   private appUrl = 'http://localhost:8080/Recipeak/';
-  constructor(private http: HttpClient) { 
-  
-  }
+  constructor(private http: HttpClient) {}
 
   getRecipes(): Observable<Recipe[]> {
-	return this.http.get(this.appUrl, {withCredentials: false})
-	  .pipe(map(
-		resp => resp as Recipe[]
-	  ));
+  return this.http.get(this.appUrl, {withCredentials: false})
+    .pipe(map(
+    resp => resp as Recipe[]
+    ));
   }
 
-  /* OLD WAY: Mock data 
+  /* OLD WAY: Mock data
   getRecipes(): Observable<Recipe[]> {
 	return of(RECIPES);
   } */

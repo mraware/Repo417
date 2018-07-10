@@ -6,6 +6,7 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfilesComponent } from './profiles/profiles.component';
+import { HistoryComponent } from './history/history.component';
 
 const routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -13,6 +14,7 @@ const routes = [
   { path: 'recipes', component: RecipeComponent },
   { path: 'detail/:id', component: RecipeDetailComponent },
   { path: 'profile/:id', component: ProfileComponent },
+  { path: 'profile/:id/history', component: HistoryComponent },
   { path: 'profiles', component: ProfilesComponent }
 ];
 
