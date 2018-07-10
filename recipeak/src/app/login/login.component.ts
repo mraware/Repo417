@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable, pipe, of } from 'rxjs';
 import { map } from 'rxjs/operators';
+import {User} from '../user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,12 +16,13 @@ export class LoginComponent implements OnInit
   private appUrl = 'http://localhost:4200/recipeak/login';
   public username : string;
   public password : string;
-  constructor( private http: HttpClient) 
+  public user : User;
+  constructor( private http: HttpClient, private router: Router) 
   {}
 
   ngOnInit() 
   {
-    console.log("I am being called. I AM A LOG IN MACHINE :)");
+    
   }
   
 
@@ -30,10 +33,15 @@ export class LoginComponent implements OnInit
    console.log(this.username);
    this.password = (<HTMLInputElement>document.getElementById("password")).value;
    console.log(this.password);
-   const body = `user=${this.username}&pass=${this.password}`;
-   return this.http.post(this.appUrl,body, {withCredentials: true }).pipe(map(resp => {
-    console.log("The mapping at least does something.");
-  }
-))
+   var myHeader = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+   let body = new HttpParams();
+   body = body.set('username', this.username);
+   body = body.set('password', this.password);
+   this.http.post(this.appUrl,body,{headers:myHeader}).pipe(map(resp => resp as User )).subscribe(resp => newFunction(resp, this.router));
+  function newFunction (user, router)
+  {
+   router.navigate(['/profile',user.userId]);
+   return user;
+  }   
  }
 }

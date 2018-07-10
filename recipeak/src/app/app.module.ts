@@ -12,6 +12,7 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { ProfileService } from './profile.service';
+import { LogOutComponent } from './log-out/log-out.component';
 import { HistoryComponent } from './history/history.component';
 
 @NgModule({
@@ -23,6 +24,7 @@ import { HistoryComponent } from './history/history.component';
     RecipeDetailComponent,
     ProfileComponent,
     ProfilesComponent,
+    LogOutComponent
     HistoryComponent
   ],
   imports: [
