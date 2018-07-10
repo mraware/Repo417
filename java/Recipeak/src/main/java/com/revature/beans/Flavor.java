@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+//History
 @Entity
 @Table(name="Flavor_Profile")
 public class Flavor {
