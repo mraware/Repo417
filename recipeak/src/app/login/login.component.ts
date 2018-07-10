@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable, pipe, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {User} from '../user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,12 +17,12 @@ export class LoginComponent implements OnInit
   public username : string;
   public password : string;
   public user : User;
-  constructor( private http: HttpClient) 
+  constructor( private http: HttpClient, private router: Router) 
   {}
 
   ngOnInit() 
   {
-    console.log("I am being called. I AM A LOG IN MACHINE :)");
+    
   }
   
 
@@ -35,11 +36,11 @@ export class LoginComponent implements OnInit
    let body = new HttpParams();
    body = body.set('username', this.username);
    body = body.set('password', this.password);
-   return this.http.post(this.appUrl,body,{headers:myHeader}).pipe(map(resp => resp as User )).subscribe(resp => this.user=resp);
- }
- logOut()
- {
-   this.http.delete(this.appUrl);
-   this.user=null;
+   this.http.post(this.appUrl,body,{headers:myHeader}).pipe(map(resp => resp as User )).subscribe(resp => newFunction(resp, this.router));
+  function newFunction (user, router)
+  {
+   router.navigate(['/profile',user.userId]);
+   return user;
+  }   
  }
 }

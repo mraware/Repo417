@@ -1,42 +1,61 @@
 package com.revature.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.User;
-import com.revature.data.UserHibernateDAO;
+import com.revature.data.UserDAO;
 
 @Controller
 @RequestMapping(value="/login")
 public class LoginController 
 {
+	ObjectMapper om = new ObjectMapper();
 	@Autowired
 	ApplicationContext ac;
 	
 	@Autowired
-	UserHibernateDAO userHD;
+	UserDAO userHD;
 	
 	private static Logger log = Logger.getLogger("10010001111011");
 
-	public LoginController() {
-		log.info("LOgin controller instantiated");
-	}
-	@RequestMapping(method=RequestMethod.GET)
+	
+	@RequestMapping(method=RequestMethod.POST)
 	@ResponseBody
-	public String goLogin(HttpSession session) 
+	public String goLogin(   String username,  String password, HttpSession session) throws JsonProcessingException 
 	{
-		String username = (String) session.getAttribute("username");
-		String password = (String) session.getAttribute("password");
+		log.debug(username);
 		User u = userHD.getUserByUsernameAndPassword(username, password);
 		System.out.println("Log in controller is being accessed.");
-		session.setAttribute("user", u); 
-		return "redirect:home";
+		session.setAttribute("user", u);
+		System.out.println("User had been entered.");
+		if(u==null)
+		{
+			return "redirect:dashboard";
+		}
+		else
+		{
+			//return "redirect:profile/"+u.getUserId();
+			return om.writeValueAsString(u);
+		}
+		
+	}
+
+	@RequestMapping(method=RequestMethod.DELETE)
+	public void getMeOutOfHere (HttpSession session)
+	{
+		session.invalidate();
 	}
 }
