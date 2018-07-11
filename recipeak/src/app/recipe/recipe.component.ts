@@ -32,6 +32,7 @@ export class RecipeComponent implements OnInit {
     * Add a radio button for public / private
     * provide default values for: 
     *   burns, promoted, notes
+    * 
     * Either:
     * - drop down to select from flavors
     * - create a new entry for any new flavor tags..
