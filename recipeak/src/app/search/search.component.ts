@@ -22,15 +22,22 @@ export class SearchComponent {
 
   onSubmit() { this.submitted = true; }
 
-  ingredientList:Ingredient[] = [];
+  ingredientList: Ingredient[] = [];
 
   newIngredient(form: any) {
-    this.ingredientList.push(new Ingredient(form.controls['ingredientList'].value));
+    this.ingredientList.push(new Ingredient(form.controls['ingredientAdd'].value));
   }
 
-showFormControls(form: any) {
-  /*return form && form.controls['ingredientList'] &&
-    form.controls['ingredientList'].value;*/
-    return this.ingredientList;
-}
+  showFormControls(form: any) {
+    /*return form && form.controls['ingredientList'] &&
+      form.controls['ingredientList'].value;*/
+      var ingredientsString = '';
+      for(var i = 0; i < this.ingredientList.length; i++){
+        if(i > 0){
+          ingredientsString += ', ';
+        }
+        ingredientsString += this.ingredientList[i].name;
+      }
+    return ingredientsString;
+  }
 }
