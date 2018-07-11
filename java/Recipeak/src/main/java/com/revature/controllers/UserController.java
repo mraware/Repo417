@@ -56,6 +56,8 @@ public class UserController {
 	@ResponseBody
 	public String verifiedUserGetUserHistory(HttpSession session, @PathVariable(value="id") int id) {
 		try {
+			log.debug(session.getId());
+			log.debug((User) session.getAttribute("user"));
 //			log.debug(us.getUserById(id));
 			User user = us.getUserById(id);
 			return om.writeValueAsString(hs.historyByUser(user));

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.beans.History;
+import com.revature.beans.Recipe;
 import com.revature.beans.User;
 import com.revature.data.HistoryDAO;
 
@@ -41,4 +42,13 @@ public class HistoryHibernateService implements HistoryService {
 		return hd.historyByUser(user);
 	}
 
+	@Override
+	public History addHistory(User user, Recipe recipe) {
+		History history = hd.getHistoryByUserAndRecipe(user, recipe);
+		if (history == null) {
+			history = new History(0,user,recipe,0,0,"");
+			hd.addHistory(history);
+		}
+		return history;
+	}
 }

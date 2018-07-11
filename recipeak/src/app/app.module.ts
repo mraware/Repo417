@@ -24,7 +24,7 @@ import { HistoryComponent } from './history/history.component';
     RecipeDetailComponent,
     ProfileComponent,
     ProfilesComponent,
-    LogOutComponent
+    LogOutComponent,
     HistoryComponent
   ],
   imports: [

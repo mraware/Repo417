@@ -12,9 +12,12 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.revature.beans.History;
+import com.revature.beans.Recipe;
 import com.revature.beans.User;
 import com.revature.services.HistoryService;
 import com.revature.services.RecipeService;
+import com.revature.services.UserService;
 
 @Component
 @Aspect
@@ -25,6 +28,8 @@ public class HistoryAspect {
 	HistoryService hs;
 	@Autowired
 	RecipeService rs;
+	@Autowired
+	UserService us;
 	
 	
 	//TODO: Test this
@@ -42,7 +47,12 @@ public class HistoryAspect {
 			if (args[0] instanceof HttpSession) {
 				HttpSession session = (HttpSession) args[0];
 				if(args[1] instanceof Integer) {
-//					int 
+					int id = (int) args[1];
+					Recipe recipe = rs.getRecipeById(id);
+					User user = (User) session.getAttribute("user");
+					if (user != null && recipe != null) {
+						hs.addHistory(user,recipe);
+					}
 				}
 			}
 		}
@@ -51,7 +61,7 @@ public class HistoryAspect {
 	}
 
 	
-	@Pointcut("execution(* com.revature.controller.RecipeController.getRecipe(..)")
+	@Pointcut("execution(* com.revature.controllers.RecipeController.getRecipe(..))")
 	public void addHistory() {}
 }
 
