@@ -12,24 +12,25 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.beans.History;
 import com.revature.beans.User;
-import com.revature.services.UserService;
+import com.revature.services.HistoryService;
 
 @Controller
-@RequestMapping(value="/admin")
-public class AdminController {
-	//comment
+@RequestMapping(value="/history")
+public class HistoryController {
 	ObjectMapper om = new ObjectMapper();
 	Logger log = Logger.getLogger(UserController.class);
 	
 	@Autowired
-	UserService us;
+	HistoryService hs;
 	
 	@RequestMapping(value="/update", method=RequestMethod.POST)
 	@ResponseBody
-	public String isAdminUpdateUser(HttpSession session, @RequestBody User user) {
+	public String isUserUpdateHistory(HttpSession session, @RequestBody History history) {
 		try {
-			return om.writeValueAsString(us.updateUser(user));
+			history.setUser((User)session.getAttribute("user"));
+			return om.writeValueAsString(hs.updateHistory(history));
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 			return null;
