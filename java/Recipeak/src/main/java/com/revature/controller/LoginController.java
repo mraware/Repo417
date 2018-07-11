@@ -15,7 +15,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.User;
 import com.revature.data.UserDAO;
-@CrossOrigin (origins = "http://localhost:4200")
+@CrossOrigin
 @Controller
 @RequestMapping(value="/login")
 public class LoginController 
