@@ -1,4 +1,4 @@
-import { Recipe } from './recipe';
+/*import { Recipe } from './recipe';
 
 export const RECIPES: Recipe[] = [
 {id: 1,
@@ -12,3 +12,4 @@ ingredients: ['cheese', 'beans', 'tortillas', 'salsa'],
 instructions: ['Fill it up', 'Roll it up', 'Stuff it down']
 }
 ];
+*/

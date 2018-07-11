@@ -20,7 +20,7 @@ public class Instruction {
 	@Column(name="instruction_id")
 	private int id;
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="recipe_id", insertable=false, updatable=false)
+	@JoinColumn(name="recipe_id", updatable=false)
 //	@Column(name="recipe_id")
 	private Recipe recipe;
 	@Column(name="step_number")

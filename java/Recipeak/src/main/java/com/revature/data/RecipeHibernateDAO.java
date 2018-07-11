@@ -18,6 +18,8 @@ public class RecipeHibernateDAO implements RecipeDAO, HibernateSession {
 
 	@Override
 	public Recipe create(Recipe b) {
+//		FlavorHibernateDAO fhd = new FlavorHibernateDAO();
+//		fhd.addFlavor(b.getFlavor());
 		session.save(b);
 		return b;
 	}
