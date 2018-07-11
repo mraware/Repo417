@@ -28,6 +28,10 @@ public class HistoryHibernateService implements HistoryService {
 
 	@Override
 	public History updateHistory(History history) {
+		if (history.getId() == 0) {
+			History oldHistory = hd.getHistoryByUserAndRecipe(history.getUser(), history.getRecipe());
+			history.setId(oldHistory.getId());
+		}
 		return hd.updateHistory(history);
 	}
 

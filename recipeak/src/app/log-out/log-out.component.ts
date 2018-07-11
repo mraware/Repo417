@@ -24,6 +24,15 @@ export class LogOutComponent implements OnInit
   //this.http.delete(this.appUrl,,{headers:myHeader}).pipe(map(resp => resp as User )).subscribe(resp => newFunction(resp, this.router));
   // this.http.delete(this.appUrl);
    //this.user=null;
- }
-
+   console.log("EXIT HAS BEEN CALLED 1.");
+   return this.http.get(this.appUrl).pipe(
+    map(success => {
+      console.log("EXIT HAS BEEN CALLED 2.");
+      this.http.delete(this.appUrl);
+      this.user = null;
+      return success;
+    })).subscribe()
+  }    
 }
+
+
