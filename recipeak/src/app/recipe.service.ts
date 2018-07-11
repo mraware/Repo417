@@ -4,25 +4,35 @@ import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Recipe } from './recipe';
-import { RECIPES } from './mock-recipes';
+/*import { RECIPES } from './mock-recipes'; */
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeService {
-  /* TODO fix this!!! */
   private appUrl = '/Recipeak/';
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getRecipes(): Observable<Recipe[]> {
-  return this.http.get(this.appUrl, {withCredentials: false})
-    .pipe(map(
-    resp => resp as Recipe[]
-    ));
+  getRecipe(id: number) {
+	return this.http.get(`${this.appUrl}recipe/${id}`, {withCredentials: false})
+	  .pipe(map(
+		resp => resp as Recipe
+	  ));
   }
 
-  /* OLD WAY: Mock data
   getRecipes(): Observable<Recipe[]> {
-	return of(RECIPES);
-  } */
+	return this.http.get(`${this.appUrl}recipe/all`, {withCredentials: false})
+	  .pipe(map(
+		resp => resp as Recipe[]
+	  ));
+  }
+
+
+  addRecipe(recipe: Recipe): Observable<Recipe> {
+    const body = JSON.stringify(recipe)
+    return this.http.post(`${this.appUrl}recipe/new`, body)
+      .pipe(map(
+        resp => resp as Recipe
+      ));
+  }
 }

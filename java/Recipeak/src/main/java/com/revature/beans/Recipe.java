@@ -28,10 +28,10 @@ public class Recipe
 	private int recipeId;
 	private String name;
 	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="flavor", insertable=false, updatable=false)
+	@JoinColumn(name="flavor", updatable=false)
 	private Flavor flavor;
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="creator", insertable=false, updatable=false)
+	@JoinColumn(name="creator", updatable=false)
 	private User creator;
 	private String privacy;
 	private int burns;
