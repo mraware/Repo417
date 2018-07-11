@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { RecipeComponent } from './recipe/recipe.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfilesComponent } from './profiles/profiles.component';
+import { SearchComponent } from './search/search.component';
 
 const routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -13,11 +15,12 @@ const routes = [
   { path: 'recipes', component: RecipeComponent },
   { path: 'detail/:id', component: RecipeDetailComponent },
   { path: 'profile/:id', component: ProfileComponent },
-  { path: 'profiles', component: ProfilesComponent }
+  { path: 'profiles', component: ProfilesComponent },
+  { path: 'search', component: SearchComponent}
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
+  imports: [ RouterModule.forRoot(routes), NgbModule.forRoot()],
   exports: [ RouterModule ],
   declarations: []
 })

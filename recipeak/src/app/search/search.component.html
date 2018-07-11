@@ -1,0 +1,39 @@
+<div class="container">
+    <div [hidden]="submitted">
+        <h1>Recipe Search</h1>
+        <form (ngSubmit)="onSubmit()" #searchForm="ngForm">
+
+            <div class="form-group">
+                <label for="RecipeName">Recipe Name</label>
+                <input type="text" class="form-control" id="recipeName" [(ngModel)]="model.recipeName" name="recipeName">
+            </div>
+
+            <div class="form-group">
+                <label for="Flavor">Flavor</label>
+                <input type="text" class="form-control" id="flavor" [(ngModel)]="model.flavor" name="flavor">
+            </div>
+
+            <div class="form-group">
+                <label for="UserName">User Name</label>
+                <input type="text" class="form-control" id="userName" [(ngModel)]="model.userName" name="userName">
+            </div>
+
+            <button type="submit" class="btn btn-success" [disabled]="!searchForm.form.valid" style="margin-bottom: 15px">Submit</button>
+
+            <div class="form-group">
+                <label for="IngredientAdd">Ingredients</label>
+                <input type="text" class="form-control" id="ingredientAdd" [(ngModel)]="model.ingredientAdd" name="ingredientAdd">
+            </div>
+
+            <div>
+                <hr> Ingredient List via form.controls = {{showFormControls(searchForm)}}
+            </div>
+
+            <button type="button" class="btn btn-default" (click)="newIngredient(searchForm);" style="margin-bottom: 15px">Add Ingredient</button>&nbsp;
+
+            <button type="submit" class="btn btn-success" style="margin-bottom: 15px">Contains</button>&nbsp;
+
+            <button type="submit" class="btn btn-success" style="margin-bottom: 15px">Made From</button>
+        </form>
+    </div>
+</div>
