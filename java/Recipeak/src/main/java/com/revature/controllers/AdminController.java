@@ -27,7 +27,7 @@ public class AdminController {
 	
 	@RequestMapping(value="/update", method=RequestMethod.POST)
 	@ResponseBody
-	public String updateUser(HttpSession session, @RequestBody User user) {
+	public String isAdminUpdateUser(HttpSession session, @RequestBody User user) {
 		//TODO: Verify user is admin
 		try {
 			return om.writeValueAsString(us.updateUser(user));

@@ -10,7 +10,7 @@ import { Recipe } from './recipe';
   providedIn: 'root'
 })
 export class RecipeService {
-  private appUrl = 'http://localhost:8080/Recipeak/';
+  private appUrl = '/Recipeak/';
   constructor(private http: HttpClient) { }
 
   getRecipe(id: number) {

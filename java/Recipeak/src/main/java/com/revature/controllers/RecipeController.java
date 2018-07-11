@@ -1,6 +1,7 @@
 package com.revature.controllers;
 
 import java.io.IOException;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class RecipeController {
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	@ResponseBody
-	public String getRecipe(@PathVariable(value="id") int id) {
+	public String getRecipe(HttpSession session, @PathVariable(value="id") int id) {
 		try {
 			log.debug(rs.getRecipeById(id));
 			return om.writeValueAsString(rs.getRecipeById(id));
