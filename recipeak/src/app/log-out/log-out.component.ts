@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LogOutComponent implements OnInit 
 {
-  private appUrl = 'http://localhost:8080/Recipeak/login';
+  private appUrl = '/Recipeak/login';
   public user : User;
   constructor(private http: HttpClient, private router: Router) { }
 

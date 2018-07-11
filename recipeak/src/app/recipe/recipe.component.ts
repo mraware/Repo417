@@ -10,7 +10,7 @@ import { RecipeService } from '../recipe.service';
   styleUrls: ['./recipe.component.css']
 })
 export class RecipeComponent implements OnInit {
-  recipes: Recipe[]; 
+  recipes: Recipe[];
 
   constructor(private recipeService: RecipeService) { }
 

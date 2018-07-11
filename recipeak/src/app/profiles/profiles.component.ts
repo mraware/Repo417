@@ -2,7 +2,7 @@ import { ProfileService } from './../profile.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Profile } from '../profile/profile.component';
+import { User } from '../user';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { Profile } from '../profile/profile.component';
 })
 export class ProfilesComponent implements OnInit {
 
-  profiles: Profile[];
+  profiles: User[];
 
   constructor(private ps: ProfileService, private router: Router) {}
 

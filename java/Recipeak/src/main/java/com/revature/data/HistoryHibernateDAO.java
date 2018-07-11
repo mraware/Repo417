@@ -2,15 +2,13 @@ package com.revature.data;
 
 import java.util.List;
 
-
-
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Component;
 
-
 import com.revature.beans.History;
+import com.revature.beans.Recipe;
 import com.revature.beans.User;
 
 @Component
@@ -57,6 +55,16 @@ public class HistoryHibernateDAO implements HistoryDAO, HibernateSession {
 		Query<History> query = session.createQuery("FROM com.revature.beans.History hist WHERE hist.user=:user");
 		query.setParameter("user", user);
 		return (List<History>) query.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public History getHistoryByUserAndRecipe(User user, Recipe recipe) {
+		Query<History> query = session.createQuery("FROM com.revature.beans.History hist "
+				+ "WHERE hist.user=:user AND hist.recipe=:recipe");
+		query.setParameter("user", user);
+		query.setParameter("recipe", recipe);
+		return query.uniqueResult();
 	}
 
 }

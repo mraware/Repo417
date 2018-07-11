@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -40,7 +43,10 @@ public class LoginController
 		User u = userHD.getUserByUsernameAndPassword(username, password);
 		System.out.println("Log in controller is being accessed.");
 		session.setAttribute("user", u);
+		log.debug(session.getId());
+		log.debug((User) session.getAttribute("user"));
 		System.out.println("User had been entered.");
+		
 		if(u==null)
 		{
 			return "redirect:dashboard";
