@@ -18,7 +18,7 @@
                 <input type="text" class="form-control" id="userName" [(ngModel)]="model.userName" name="userName">
             </div>
 
-            <button type="submit" class="btn btn-success" [disabled]="!searchForm.form.valid" style="margin-bottom: 15px">Submit</button>
+            <button type="button" class="btn btn-success" style="margin-bottom: 15px">Submit</button>
 
             <div class="form-group">
                 <label for="IngredientAdd">Ingredients</label>
@@ -26,14 +26,14 @@
             </div>
 
             <div>
-                <hr> Ingredient List via form.controls = {{showFormControls(searchForm)}}
+                <p> Selected Ingredients: {{showFormControls(searchForm)}}</p>
             </div>
 
-            <button type="button" class="btn btn-default" (click)="newIngredient(searchForm);" style="margin-bottom: 15px">Add Ingredient</button>&nbsp;
+            <button type="button" class="btn btn-default" (click)="newIngredient(searchForm);" style="margin-bottom: 15px" [disabled]="model.ingredientAdd === '' || model.ingredientAdd == null">Add Ingredient</button>&nbsp;
 
-            <button type="submit" class="btn btn-success" style="margin-bottom: 15px">Contains</button>&nbsp;
+            <button type="button" class="btn btn-success" style="margin-bottom: 15px">Contains</button>&nbsp;
 
-            <button type="submit" class="btn btn-success" style="margin-bottom: 15px">Made From</button>
+            <button type="button" class="btn btn-success" style="margin-bottom: 15px">Made From</button>
         </form>
     </div>
 </div>

@@ -1,4 +1,4 @@
-package com.revature.data;
+package com.revature.services;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,7 @@ import org.hibernate.Session;
 
 import com.revature.beans.Recipe;
 import com.revature.beans.RecipeIngredient;
+import com.revature.data.HibernateSession;
 
 public class SearchHibernate implements SearchService, HibernateSession {
 	private volatile Session session;

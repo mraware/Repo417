@@ -27,9 +27,9 @@ import com.revature.beans.User;
 import com.revature.data.HistoryDAO;
 import com.revature.data.HistoryHibernateDAO;
 import com.revature.data.RecipeDAO;
-import com.revature.data.SearchService;
 import com.revature.data.UserDAO;
 import com.revature.data.UserHibernateDAO;
+import com.revature.services.SearchService;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
