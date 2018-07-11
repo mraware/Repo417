@@ -10,7 +10,7 @@ import { History } from './history';
 })
 export class ProfileService {
 
-  private url = 'http://localhost:8080/Recipeak/';
+  private url = '/Recipeak/';
   constructor(public http: HttpClient) { }
 
   getUsers() {

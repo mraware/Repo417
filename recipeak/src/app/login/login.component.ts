@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit 
 {
-  private appUrl = 'http://localhost:8080/Recipeak/login';
+  private appUrl = '/Recipeak/login';
   public username : string;
   public password : string;
   public user : User;

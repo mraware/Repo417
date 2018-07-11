@@ -11,7 +11,7 @@ import { RECIPES } from './mock-recipes';
 })
 export class RecipeService {
   /* TODO fix this!!! */
-  private appUrl = 'http://localhost:8080/Recipeak/';
+  private appUrl = '/Recipeak/';
   constructor(private http: HttpClient) {}
 
   getRecipes(): Observable<Recipe[]> {
