@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +17,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.User;
 import com.revature.data.UserDAO;
-
+@CrossOrigin
 @Controller
 @RequestMapping(value="/login")
 public class LoginController 
@@ -43,14 +43,12 @@ public class LoginController
 		log.debug(session.getId());
 		log.debug((User) session.getAttribute("user"));
 		System.out.println("User had been entered.");
-		
 		if(u==null)
 		{
 			return "redirect:dashboard";
 		}
 		else
 		{
-			//return "redirect:profile/"+u.getUserId();
 			return om.writeValueAsString(u);
 		}
 		

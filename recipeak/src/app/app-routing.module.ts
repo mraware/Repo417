@@ -9,7 +9,6 @@ import { ProfilesComponent } from './profiles/profiles.component';
 import { LoginComponent } from './login/login.component';
 import { HistoryComponent } from './history/history.component';
 
-
 const routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },

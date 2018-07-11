@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit
 
  letMeIn()
  {
-   console.log("2");
    this.username = (<HTMLInputElement>document.getElementById("username")).value;
    console.log(this.username);
    this.password = (<HTMLInputElement>document.getElementById("password")).value;
@@ -37,7 +36,7 @@ export class LoginComponent implements OnInit
    let body = new HttpParams();
    body = body.set('username', this.username);
    body = body.set('password', this.password);
-   this.http.post(this.appUrl,body,{headers:myHeader}).pipe(map(resp => resp as User )).subscribe(resp => newFunction(resp, this.router));
+   this.http.post(this.appUrl,body,{headers:myHeader,withCredentials:true }).pipe(map(resp => resp as User )).subscribe(resp => newFunction(resp, this.router));
   function newFunction (user, router)
   {
    router.navigate(['/profile',user.userId]);
