@@ -27,9 +27,4 @@ export class ProfileService {
     return this.http.post(`${this.url}admin/update`, profile)
     .pipe(map(resp => resp as User));
   }
-
-  getHitory(id: number) {
-    return this.http.get(`${this.url}user/${id}/history`)
-    .pipe(map(resp => resp as History[]));
-  }
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.Recipe;
+import com.revature.services.HistoryService;
 import com.revature.services.RecipeService;
 
 @Controller
@@ -25,6 +26,8 @@ public class RecipeController {
 	
 	@Autowired
 	RecipeService rs;
+	@Autowired
+	HistoryService hs;
 	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	@ResponseBody
@@ -61,6 +64,19 @@ public class RecipeController {
 			e.printStackTrace();
 			return null;
 		} catch (IOException e ) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	
+	@RequestMapping(value="/{id}/reviews", method=RequestMethod.GET)
+	@ResponseBody
+	public String getReviewsFromRecipe(@PathVariable(value="id") int id) {
+		Recipe recipe = rs.getRecipeById(id);
+		try {
+			return om.writeValueAsString(hs.getReviewsByRecipe(recipe));
+		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 			return null;
 		}

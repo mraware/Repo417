@@ -13,4 +13,6 @@ public interface HistoryService {
 	public void deleteHistory(History history);
 	public List<History> historyByUser(User user);
 	public History addHistory(User user, Recipe recipe);
+	public List<History> getReviewsByUser(User user);
+	public List<History> getReviewsByRecipe(Recipe recipe);
 }

@@ -4,21 +4,20 @@ import { ActivatedRoute } from '@angular/router';
 import { History } from '../history';
 
 @Component({
-  selector: 'app-history',
-  templateUrl: './history.component.html',
-  styleUrls: ['./history.component.css']
+  selector: 'app-review',
+  templateUrl: './review.component.html',
+  styleUrls: ['./review.component.css']
 })
-export class HistoryComponent implements OnInit {
+export class ReviewComponent implements OnInit {
 
-  public history: History[];
+  public reviews: History[];
 
   constructor(private hs: HistoryService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.hs.getHistory(+params['id']).subscribe(
-        history => this.history = history);
+        reviews => this.reviews = reviews);
       });
     }
-
 }
