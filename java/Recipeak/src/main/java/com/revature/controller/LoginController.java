@@ -54,9 +54,12 @@ public class LoginController
 		
 	}
 
-	@RequestMapping(method=RequestMethod.DELETE)
-	public void getMeOutOfHere (HttpSession session)
+	@RequestMapping(method=RequestMethod.GET)
+	@ResponseBody
+	public String getMeOutOfHere (HttpSession session)
 	{
+		log.info("BEEP BOOP: SOMEONE HAS LOGGED OUT.");
 		session.invalidate();
+		return "MORTE";
 	}
 }
