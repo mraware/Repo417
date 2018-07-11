@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { RecipeComponent } from './recipe/recipe.component';
@@ -13,6 +13,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { ProfileService } from './profile.service';
 import { LogOutComponent } from './log-out/log-out.component';
+import { HistoryComponent } from './history/history.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +24,13 @@ import { LogOutComponent } from './log-out/log-out.component';
     RecipeDetailComponent,
     ProfileComponent,
     ProfilesComponent,
-    LogOutComponent
+    LogOutComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-	  HttpClientModule
+    HttpClientModule
   ],
   providers: [ProfileService],
   bootstrap: [AppComponent]

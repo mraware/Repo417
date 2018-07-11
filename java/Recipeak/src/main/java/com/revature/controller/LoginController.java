@@ -40,7 +40,10 @@ public class LoginController
 		User u = userHD.getUserByUsernameAndPassword(username, password);
 		System.out.println("Log in controller is being accessed.");
 		session.setAttribute("user", u);
+		log.debug(session.getId());
+		log.debug((User) session.getAttribute("user"));
 		System.out.println("User had been entered.");
+		
 		if(u==null)
 		{
 			return "redirect:dashboard";

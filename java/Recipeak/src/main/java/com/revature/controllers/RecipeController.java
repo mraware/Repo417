@@ -1,5 +1,7 @@
 package com.revature.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +25,7 @@ public class RecipeController {
 	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	@ResponseBody
-	public String getUsers() {
+	public String getRecipes() {
 		try {
 			log.debug(rs.getAllRecipes());
 			return om.writeValueAsString(rs.getAllRecipes());
@@ -35,7 +37,7 @@ public class RecipeController {
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	@ResponseBody
-	public String getUser(@PathVariable(value="id") int id) {
+	public String getRecipe(HttpSession session, @PathVariable(value="id") int id) {
 		try {
 			log.debug(rs.getRecipeById(id));
 			return om.writeValueAsString(rs.getRecipeById(id));

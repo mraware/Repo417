@@ -24,10 +24,10 @@ public class History {
 	@Column(name="History_id")
 	private int id;
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="user_id", insertable=false, updatable=false)
+	@JoinColumn(name="user_id", updatable=false)
 	private User user;
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="recipe", insertable=false, updatable=false)
+	@JoinColumn(name="recipe", updatable=false)
 	private Recipe recipe;
 	private int saved;
 	private int score;
