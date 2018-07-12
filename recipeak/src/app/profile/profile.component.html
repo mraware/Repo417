@@ -1,20 +1,19 @@
-<div *ngIf="profile">
-  <div>
+<div *ngIf="profile" id="profile-parent">
+  <div style="text-align: right; float: right;">
     <span *ngIf="loggedIn && loggedIn.type == 'admin'">
       <span *ngIf="profile.type == 'user'">
-        <button class="btn btn-success btn-sm" (click)="promoteUser()">Promote</button>
+        <button class="btn btn-success btn-lg" (click)="promoteUser()">Promote</button>
       </span>
       <span *ngIf="profile.type != 'banned';then banButton else unbanButton">stuff</span>
       <ng-template #banButton>
-        <button class="btn btn-danger btn-sm" (click)="banUser()">Ban</button>
+        <button class="btn btn-danger btn-lg" (click)="banUser()">Ban</button>
       </ng-template>
       <ng-template #unbanButton>
-        <button class="btn btn-secondary btn-sm" (click)="unbanUser()">Unban</button>
+        <button class="btn btn-secondary btn-lg" (click)="unbanUser()">Unban</button>
       </ng-template>
     </span>
   </div>
   <div><h1>{{profile.firstName}} {{profile.lastName}}</h1><div>
-    
   <div><app-review [id]=profile.userId [type]='"user"'></app-review></div>
   <div>Recipes</div>
 </div>
