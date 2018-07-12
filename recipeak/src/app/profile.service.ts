@@ -28,8 +28,7 @@ export class ProfileService {
     .pipe(map(resp => resp as User));
   }
 
-  getHitory(id: number) {
-    return this.http.get(`${this.url}user/${id}/history`)
-    .pipe(map(resp => resp as History[]));
+  getLoggedIn() {
+    return this.http.get(`${this.url}login/session`).pipe(map(resp => resp as User));
   }
 }

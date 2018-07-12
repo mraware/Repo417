@@ -2,4 +2,9 @@
   <h2>{{recipe.name | uppercase}} Details</h2>
   <div><span>Ingredients: </span> go here </div>
   <div><span>Instructions: </span> go here </div>
+  <div *ngIf="loggedIn">
+    <!-- <span *ngIf=""></span> -->
+    <button class="btn btn-primary" (click)="reviewRecipe()">Review</button>
+  </div>
+  <app-review [id]=recipe.recipeId [type]='"recipe"'></app-review>
 </div> 

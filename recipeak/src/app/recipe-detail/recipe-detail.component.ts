@@ -2,7 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Recipe } from '../recipe';
+import { User } from '../user';
 import { RecipeService } from '../recipe.service';
+import { ProfileService } from '../profile.service';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -11,13 +13,16 @@ import { RecipeService } from '../recipe.service';
 })
 export class RecipeDetailComponent implements OnInit {
   @Input() recipe: Recipe;
+  loggedIn: User;
 
-  constructor(private rs: RecipeService, private route: ActivatedRoute) { 
+  constructor(private rs: RecipeService, private route: ActivatedRoute, private ps: ProfileService) { 
     
   }
 
   ngOnInit() {
     this.getRecipe();
+
+    this.ps.getLoggedIn().subscribe(loggedIn => this.loggedIn = loggedIn);
   }
 
   getRecipe(): void {
@@ -33,6 +38,10 @@ export class RecipeDetailComponent implements OnInit {
     this.rs.getRecipe(id)
     .subscribe(recipe => this.recipe = recipe);
   }
+
+  
+
+
 
 
 }

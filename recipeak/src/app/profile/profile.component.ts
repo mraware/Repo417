@@ -9,8 +9,8 @@ import { User } from '../user';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  // id: number;
 
+  loggedIn: User;
   profile: User;
 
   constructor(private ps: ProfileService, private route: ActivatedRoute) { }
@@ -20,6 +20,8 @@ export class ProfileComponent implements OnInit {
       this.ps.getUser(+params['id']).subscribe(
         profile => this.profile = profile);
     });
+
+    this.ps.getLoggedIn().subscribe(loggedIn => this.loggedIn = loggedIn);
   }
 
   promoteUser() {
@@ -40,14 +42,4 @@ export class ProfileComponent implements OnInit {
     this.ps.updateUser(this.profile).subscribe(
       profile => this.profile = profile);
   }
-
-}
-
-export interface Profile {
-  userId: number;
-  type: string;
-  username: string;
-  password: string;
-  firstName: string;
-  lastName: string;
 }

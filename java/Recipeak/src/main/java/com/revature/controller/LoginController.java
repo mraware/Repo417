@@ -62,4 +62,11 @@ public class LoginController
 		session.invalidate();
 		return "MORTE";
 	}
+	
+	@RequestMapping(value="/session", method=RequestMethod.GET)
+	@ResponseBody
+	public String goLoggedIn(HttpSession session) throws JsonProcessingException 
+	{
+		return om.writeValueAsString((User)session.getAttribute("user"));
+	}
 }
