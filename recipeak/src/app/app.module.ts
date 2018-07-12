@@ -12,6 +12,8 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { ProfileService } from './profile.service';
+import { HistoryService } from './history.service';
+import { RecipeService } from './recipe.service';
 import { LogOutComponent } from './log-out/log-out.component';
 import { HistoryComponent } from './history/history.component';
 import { ReviewComponent } from './review/review.component';
@@ -32,9 +34,12 @@ import { ReviewComponent } from './review/review.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [ProfileService],
+  providers: [ProfileService,
+    HistoryService,
+    RecipeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

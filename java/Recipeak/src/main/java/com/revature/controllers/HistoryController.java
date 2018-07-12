@@ -46,4 +46,16 @@ public class HistoryController {
 			return null;
 		}
 	}
+	
+	@RequestMapping(value="/review", method=RequestMethod.POST)
+	@ResponseBody
+	public String isUserReview(HttpSession session, @RequestBody History history) {
+		try {
+			history.setUser((User)session.getAttribute("user"));
+			return om.writeValueAsString(hs.addReview(history));
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

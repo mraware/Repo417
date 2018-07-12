@@ -65,4 +65,12 @@ public class HistoryHibernateService implements HistoryService {
 	public List<History> getReviewsByRecipe(Recipe recipe) {
 		return hd.getReviewsByRecipe(recipe);
 	}
+
+	@Override
+	public History addReview(History history) {
+		History oldHistory = hd.getHistoryByUserAndRecipe(history.getUser(), history.getRecipe());
+		history.setId(oldHistory.getId());
+		history.setSaved(oldHistory.getSaved());
+		return hd.updateHistory(history);
+	}
 }
