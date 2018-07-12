@@ -16,8 +16,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./recipe-detail.component.css']
 })
 export class RecipeDetailComponent implements OnInit {
-  @Input() recipe: Recipe;
   @Input() recipeData: [any];
+  @Input() recipe: Recipe;
   loggedIn: User;
   reviewing: boolean;
   ratings: number[];
@@ -56,7 +56,9 @@ export class RecipeDetailComponent implements OnInit {
     this.rs.getRecipeData(id)
     .subscribe(recipedata => {
       this.recipeData = recipedata;
-      this.recipe = this.recipeData[0];
+      console.log(this.recipeData);
+      this.recipe = this.recipeData[0].recipe as Recipe;
+      console.log(this.recipe);
     });
   }
   
