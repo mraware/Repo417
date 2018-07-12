@@ -14,6 +14,7 @@ import { Flavor } from '../flavor';
 export class RecipeComponent implements OnInit {
   recipes: Recipe[]; 
   recipe: Recipe;
+  id : number;
   constructor(private recipeService: RecipeService) { }
 
   ngOnInit() {
@@ -51,5 +52,23 @@ export class RecipeComponent implements OnInit {
     console.log(arecipe);
     this.recipeService.addRecipe(arecipe)
       .subscribe(recipe => this.recipe = recipe);
+  }
+
+  Burn() : void 
+  {
+    console.log("BURN HAS BEEN CALLED.");
+    this.id = Number ((<HTMLInputElement>document.getElementById("recipeID")).value);
+    let brecipe = new Recipe();
+    this.recipeService.getRecipe(this.id).subscribe(resp => Incinerate (resp,this.recipeService));
+    function Incinerate(resp, recipeService)
+    {
+    brecipe = resp;
+    console.log(brecipe);
+    console.log(brecipe.recipeId);
+    console.log("The old burn level is "+ brecipe.burns);
+    brecipe.burns++;
+    console.log("The new burn level is " +brecipe.burns);
+    recipeService.updateRecipe(brecipe).subscribe(recipe => brecipe = recipe);
+    }
   }
 }
