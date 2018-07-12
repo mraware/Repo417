@@ -12,6 +12,7 @@
       <input type="text" class="form-control" id="recipeID" required>
     </div>
     <button type="button" class="btn btn-danger" (click)="Burn()">FLAME ON!</button>
+    <button type="button" class="btn btn-warning" id = "sensitive" (click)="Promote()">PROMOTE!</button>
   </form>
 
 <!-- Modal -->
@@ -42,7 +43,7 @@
 <ul class="recipes">
 	<li *ngFor="let recipe of recipes">
 		<a routerLink="/detail/{{recipe.recipeId}}">
-			<span class="badge">{{recipe.recipeId}}</span> {{recipe.name}}
+			<span class="badge">{{recipe.recipeId}} {{EngageStar(recipe.promoted)}} {{recipe.name}} </span>   
 		</a>
 	</li>
 </ul> 
