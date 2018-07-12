@@ -2,14 +2,14 @@
     <h2>Reviews</h2>
     <table class="table table-hover">
       <tr>
-        <th>Recipe</th>
-        <th>Reviewer</th>
-        <th>Score</th>
-        <th>Review</th>
+        <th id="review-column-1">Recipe</th>
+        <th id="review-column-2">Reviewer</th>
+        <th id="review-column-3">Score</th>
+        <th id="review-column-4">Review</th>
       </tr>
       <tr *ngFor="let review of reviews">
-        <td>{{review.recipe.name}}</td>
-        <td>{{review.user.firstName}} {{review.user.lastName}}</td>
+        <td><a href="/detail/{{review.recipe.recipeId}}">{{review.recipe.name}}</a></td>
+        <td><a href="/profile/{{review.user.userId}}">{{review.user.firstName}} {{review.user.lastName}}</a></td>
         <td>{{review.score}}</td>
         <td>{{review.review}}</td>
       </tr>

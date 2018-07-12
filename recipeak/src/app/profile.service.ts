@@ -27,4 +27,8 @@ export class ProfileService {
     return this.http.post(`${this.url}admin/update`, profile)
     .pipe(map(resp => resp as User));
   }
+
+  getLoggedIn() {
+    return this.http.get(`${this.url}login/session`).pipe(map(resp => resp as User));
+  }
 }
