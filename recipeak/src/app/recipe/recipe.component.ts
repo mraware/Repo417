@@ -16,6 +16,7 @@ export class RecipeComponent implements OnInit {
   recipes: Recipe[]; 
   recipe: Recipe;
   id : number;
+  notes: String;
   constructor(private recipeService: RecipeService, private http: HttpClient) { }
 
   ngOnInit() {
@@ -108,5 +109,24 @@ export class RecipeComponent implements OnInit {
       return "PROMOTED!!!" 
     }
     return null;
+  }
+
+  Notes() : void
+  {
+    console.log("NOTES HAS BEEN CALLED.");
+    this.id = Number ((<HTMLInputElement>document.getElementById("recipeID")).value);
+    this.notes = (<HTMLInputElement>document.getElementById("Notes")).value;
+    let brecipe = new Recipe();
+    this.recipeService.getRecipe(this.id).subscribe(resp => NoteTaker (resp,this.recipeService));
+    function NoteTaker (resp, recipeService)
+    {
+      brecipe = resp;
+      console.log(brecipe);
+      console.log(brecipe.recipeId);
+      console.log("The old note is "+ brecipe.notes);
+      brecipe.notes= this.notes;
+      console.log("The new note is " +brecipe.notes);
+      recipeService.updateRecipe(brecipe).subscribe(recipe => brecipe = recipe);
+    }
   }
 }

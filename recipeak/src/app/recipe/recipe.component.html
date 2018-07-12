@@ -8,11 +8,12 @@
 <div style="text-align:center"></div>
   <form>
     <div class="form-group">
-      <label for="recipeID">Recipe ID</label>
+      <input type="text" class="form-control" id="Notes" size="50" >
       <input type="text" class="form-control" id="recipeID" required>
     </div>
     <button type="button" class="btn btn-danger" (click)="Burn()">FLAME ON!</button>
     <button type="button" class="btn btn-warning" id = "sensitive" (click)="Promote()">PROMOTE!</button>
+    <button type="button" class="btn btn-success" (click)="Notes()">Note Input</button>
   </form>
 
 <!-- Modal -->
