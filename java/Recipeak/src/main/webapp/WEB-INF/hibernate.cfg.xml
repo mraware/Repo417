@@ -25,5 +25,6 @@
 		<mapping class="com.revature.beans.Preference"/>
 		<mapping class="com.revature.beans.Ingredient"/>
 		<mapping class="com.revature.beans.RecipeIngredient"/>
+		<mapping class="com.revature.beans.Instruction"/>
 	</session-factory>
 </hibernate-configuration>

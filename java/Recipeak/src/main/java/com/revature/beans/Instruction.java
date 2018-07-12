@@ -11,17 +11,22 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="Instructions")
-public class Instruction {
+@JsonIgnoreProperties(value = { "recipe" })
+public class Instruction 
+{
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="instructions")
 	@SequenceGenerator(name="instructions", sequenceName="instructions_sq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="instructions")
 	@Column(name="instruction_id")
 	private int id;
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="recipe_id", updatable=false)
-//	@Column(name="recipe_id")
 	private Recipe recipe;
 	@Column(name="step_number")
 	private int stepNumber;
@@ -84,6 +89,7 @@ public class Instruction {
 	public Recipe getRecipe() {
 		return recipe;
 	}
+	@Autowired
 	public void setRecipe(Recipe recipe) {
 		this.recipe = recipe;
 	}

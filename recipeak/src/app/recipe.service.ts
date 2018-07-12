@@ -13,6 +13,13 @@ export class RecipeService {
   private appUrl = '/Recipeak/';
   constructor(private http: HttpClient) { }
 
+  getRecipeData(id: number) {
+    return this.http.get(`${this.appUrl}recipe/${id}`)
+      .pipe(map(
+        resp => resp as [any]
+      ));
+  }
+
   getRecipe(id: number) {
 	return this.http.get(`${this.appUrl}recipe/${id}`, {withCredentials: false})
 	  .pipe(map(

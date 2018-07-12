@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.Ingredient;
+import com.revature.beans.Instruction;
 import com.revature.beans.Recipe;
 import com.revature.beans.RecipeIngredient;
 import com.revature.beans.User;
 import com.revature.services.IngredientService;
+import com.revature.services.InstructionService;
 import com.revature.services.RecipeIngredientService;
 import com.revature.services.RecipeService;
 
@@ -36,6 +38,8 @@ public class RecipeController {
 	IngredientService is;
 	@Autowired
 	RecipeIngredientService ris;
+	@Autowired
+	InstructionService ins;
 	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	@ResponseBody
@@ -49,36 +53,19 @@ public class RecipeController {
 		}
 	}
 	
-	/* TODO change this to a POST... */
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	@ResponseBody
 	public String getRecipe(HttpSession session, @PathVariable(value="id") int id) {
 		try {
-			// so I am going to try returning a string that contains
-			// basically everything
-			// return a JSON object containing:
-			// 1. Recipe Object
-			// 2. List of Instructions
-			// 3. List of Ingredients
-			// --> Need List of both: Ingredient & RecipeIngredient
-			
 			Recipe recipe = rs.getRecipeById(id);
-			log.debug(recipe);
-			
 			List<RecipeIngredient> recipeIngList = ris.getRecipeIngredientByRecipe(recipe);
-			log.debug(recipeIngList);
-			/* 
-			 * I am pretty sure the eager loading takes care of getting all the ingredients...
-			 * ... now if only I could knock off that annoying recipe object...
-			 */
-			// get the set of IDs from RecipeIngredients to pass into 
-//			int ids[] = new int [recipeIngList.size()]; int i = 0;
-//			for(RecipeIngredient ing: recipeIngList) { ids[i++] = ing.getRecipe().getRecipeId(); }
-//			List<Ingredient> ingList = is.getIngredientsByIds(ids);
-//			log.debug(ingList);
-			return om.writeValueAsString(recipe) +
-					om.writeValueAsString(recipeIngList);
-//					om.writeValueAsString(ingList);
+			
+			// lastly, return the set of instructions for the recipe
+			List<Instruction> recipeInstr = ins.getInstructionsByRecipe(recipe);
+			
+			return "[{ \"recipe\" :" + om.writeValueAsString(recipe) + "}, " +
+					"{ \"recipeIngredients\" :" + om.writeValueAsString(recipeIngList) + "}, " +
+					"{ \"instructions\" :" + om.writeValueAsString(recipeInstr) + "}]";
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 			return null;

@@ -11,13 +11,14 @@ import { RecipeService } from '../recipe.service';
 })
 export class RecipeDetailComponent implements OnInit {
   @Input() recipe: Recipe;
-
+  @Input() recipeData: [any];
   constructor(private rs: RecipeService, private route: ActivatedRoute) { 
     
   }
 
   ngOnInit() {
-    this.getRecipe();
+    // this.getRecipe();
+    this.getRecipeData();
   }
 
   getRecipe(): void {
@@ -34,5 +35,11 @@ export class RecipeDetailComponent implements OnInit {
     .subscribe(recipe => this.recipe = recipe);
   }
 
+  getRecipeData() {
+    const id = +this.route.snapshot.paramMap.get('id');
+    console.log(id);
+    this.rs.getRecipeData(id)
+    .subscribe(recipedata => this.recipeData = recipedata);
+  }
 
 }

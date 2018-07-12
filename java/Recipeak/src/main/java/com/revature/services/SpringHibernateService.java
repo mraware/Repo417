@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.beans.Ingredient;
+import com.revature.beans.Instruction;
 import com.revature.beans.Recipe;
 import com.revature.beans.RecipeIngredient;
 import com.revature.beans.User;
 import com.revature.data.IngredientDAO;
+import com.revature.data.InstructionDAO;
 import com.revature.data.RecipeDAO;
 import com.revature.data.RecipeIngredientDAO;
 import com.revature.data.RecipeIngredientHibernate;
@@ -20,7 +22,8 @@ import com.revature.data.UserDAO;
 public class SpringHibernateService implements UserService,
 											   RecipeService,
 											   IngredientService,
-											   RecipeIngredientService {
+											   RecipeIngredientService,
+											   InstructionService {
 	Logger log = Logger.getLogger(SpringHibernateService.class);
 	@Autowired
 	UserDAO ud;
@@ -30,6 +33,8 @@ public class SpringHibernateService implements UserService,
 	IngredientDAO id;
 	@Autowired
 	RecipeIngredientDAO rid;
+	@Autowired
+	InstructionDAO ind;
 
 	@Override
 	public User addUser(User user) {
@@ -82,6 +87,11 @@ public class SpringHibernateService implements UserService,
 		return rd.getAll();
 	}
 
+	/*
+	 * 
+	 * DO YOU REALLY NEED THIS 
+	 * (I THINK THIS ISN'T USED)
+	 */
 	@Override
 	public List<Ingredient> getIngredientsByIds(int[] ids) {
 		// should be able to just call the IngredientDAO function here
@@ -91,6 +101,11 @@ public class SpringHibernateService implements UserService,
 	@Override
 	public List<RecipeIngredient> getRecipeIngredientByRecipe(Recipe r) {
 		return rid.getRecipeIngredients(r);
+	}
+
+	@Override
+	public List<Instruction> getInstructionsByRecipe(Recipe r) {
+		return ind.getInstructionsByRecipe(r);
 	}
 
 }
