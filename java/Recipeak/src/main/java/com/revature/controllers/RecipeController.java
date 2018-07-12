@@ -49,6 +49,7 @@ public class RecipeController {
 		}
 	}
 	
+	/* TODO change this to a POST... */
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	@ResponseBody
 	public String getRecipe(HttpSession session, @PathVariable(value="id") int id) {
@@ -64,17 +65,20 @@ public class RecipeController {
 			Recipe recipe = rs.getRecipeById(id);
 			log.debug(recipe);
 			
-			List<RecipeIngredient> recipeIngList = ris.getRecipeIngredientByRecipeId(recipe.getRecipeId());
+			List<RecipeIngredient> recipeIngList = ris.getRecipeIngredientByRecipe(recipe);
 			log.debug(recipeIngList);
+			/* 
+			 * I am pretty sure the eager loading takes care of getting all the ingredients...
+			 * ... now if only I could knock off that annoying recipe object...
+			 */
 			// get the set of IDs from RecipeIngredients to pass into 
-			int ids[] = new int [recipeIngList.size()]; int i = 0;
-			for(RecipeIngredient ing: recipeIngList) { ids[i++] = ing.getRecipeId(); }
-			
-			List<Ingredient> ingList = is.getIngredientsByIds(ids);
-			log.debug(ingList);
+//			int ids[] = new int [recipeIngList.size()]; int i = 0;
+//			for(RecipeIngredient ing: recipeIngList) { ids[i++] = ing.getRecipe().getRecipeId(); }
+//			List<Ingredient> ingList = is.getIngredientsByIds(ids);
+//			log.debug(ingList);
 			return om.writeValueAsString(recipe) +
-					om.writeValueAsString(recipeIngList) +
-					om.writeValueAsString(ingList);
+					om.writeValueAsString(recipeIngList);
+//					om.writeValueAsString(ingList);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 			return null;

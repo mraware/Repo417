@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Component;
 
+import com.revature.beans.Recipe;
 import com.revature.beans.RecipeIngredient;
 
 @Component
-public class RecipeIngredientHibernate implements RecipeIngredientDAO{
+public class RecipeIngredientHibernate implements RecipeIngredientDAO, HibernateSession {
 	private volatile Session session;
 	Logger log = Logger.getLogger(RecipeIngredientHibernate.class);
 
@@ -41,10 +43,18 @@ public class RecipeIngredientHibernate implements RecipeIngredientDAO{
 		return (List<RecipeIngredient>) session.createQuery("From com.revature.beans.RecipeIngredient", RecipeIngredient.class).list();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<RecipeIngredient> getRecipeIngredients(int recipeId) {
-		log.debug("ROBOT HELL : Attempting to run some HQL");
-		return (List<RecipeIngredient>) session.createQuery("From com.revature.beans.RecipeIngredient where recipeId=:recipeId", RecipeIngredient.class).list();
+	public List<RecipeIngredient> getRecipeIngredients(Recipe r) {
+		Query<RecipeIngredient> query = session.createQuery("From com.revature.beans.RecipeIngredient ri where ri.recipe=:r");
+		query.setParameter("r", r);
+		return (List<RecipeIngredient>) query.list();
+		
+	}
+
+	@Override
+	public void setSession(Session session) {
+		this.session = session;
 	}
 
 }

@@ -2,6 +2,7 @@ package com.revature.data;
 
 import java.util.List;
 
+import com.revature.beans.Recipe;
 import com.revature.beans.RecipeIngredient;
 
 public interface RecipeIngredientDAO {
@@ -10,5 +11,5 @@ public interface RecipeIngredientDAO {
 	public RecipeIngredient updateRecipeIngredient(RecipeIngredient ingredient);
 	public void deleteRecipeIngredient(RecipeIngredient ingredient);
 	public List<RecipeIngredient> getAll();
-	public List<RecipeIngredient> getRecipeIngredients(int recipeId);
+	public List<RecipeIngredient> getRecipeIngredients(Recipe r);
 }

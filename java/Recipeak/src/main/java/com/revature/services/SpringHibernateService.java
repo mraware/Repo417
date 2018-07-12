@@ -89,9 +89,8 @@ public class SpringHibernateService implements UserService,
 	}
 
 	@Override
-	public List<RecipeIngredient> getRecipeIngredientByRecipeId(int recipeId) {
-		log.debug("ROBOT HELL : In a function with a long name!!");
-		return rid.getRecipeIngredients(recipeId);
+	public List<RecipeIngredient> getRecipeIngredientByRecipe(Recipe r) {
+		return rid.getRecipeIngredients(r);
 	}
 
 }
