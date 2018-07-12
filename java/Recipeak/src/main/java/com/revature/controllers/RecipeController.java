@@ -1,6 +1,8 @@
 package com.revature.controllers;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -14,7 +16,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.beans.Ingredient;
+import com.revature.beans.Instruction;
 import com.revature.beans.Recipe;
+import com.revature.beans.RecipeIngredient;
+import com.revature.beans.User;
+import com.revature.services.IngredientService;
+import com.revature.services.InstructionService;
+import com.revature.services.RecipeIngredientService;
 import com.revature.services.HistoryService;
 import com.revature.services.RecipeService;
 
@@ -27,6 +36,12 @@ public class RecipeController {
 	@Autowired
 	RecipeService rs;
 	@Autowired
+	IngredientService is;
+	@Autowired
+	RecipeIngredientService ris;
+	@Autowired
+	InstructionService ins;
+  @Autowired
 	HistoryService hs;
 	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
@@ -45,8 +60,15 @@ public class RecipeController {
 	@ResponseBody
 	public String getRecipe(HttpSession session, @PathVariable(value="id") int id) {
 		try {
-			log.debug(rs.getRecipeById(id));
-			return om.writeValueAsString(rs.getRecipeById(id));
+			Recipe recipe = rs.getRecipeById(id);
+			List<RecipeIngredient> recipeIngList = ris.getRecipeIngredientByRecipe(recipe);
+			
+			// lastly, return the set of instructions for the recipe
+			List<Instruction> recipeInstr = ins.getInstructionsByRecipe(recipe);
+			
+			return "[{ \"recipe\" :" + om.writeValueAsString(recipe) + "}, " +
+					"{ \"recipeIngredients\" :" + om.writeValueAsString(recipeIngList) + "}, " +
+					"{ \"instructions\" :" + om.writeValueAsString(recipeInstr) + "}]";
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 			return null;
@@ -55,10 +77,14 @@ public class RecipeController {
 	
 	@RequestMapping(value="/new", method=RequestMethod.POST)
 	@ResponseBody
-	public String addRecipe(@RequestBody String r) {
+	public String isUserAddRecipe(HttpSession session, @RequestBody String r) {
 		try {
-			String recipe = rs.addRecipe(om.readValue(r, Recipe.class)).toString();
-			return recipe;
+			Recipe recipe = om.readValue(r, Recipe.class);
+			recipe.setCreator((User) session.getAttribute("user"));
+			log.trace("\n" + recipe + "\n");
+			rs.addRecipe(recipe);
+			//log.debug((User) session.getAttribute("user"));
+			return recipe.toString();
 			//			return "redirect:home";
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();

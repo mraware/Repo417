@@ -1,7 +1,10 @@
-<div *ngIf="recipe">
-  <h2>{{recipe.name | uppercase}} Details</h2>
+<div *ngIf="recipeData">
+  {{ recipeData[0] | json}}
+  {{ recipeData[1] | json }}
+  {{ recipeData[2] | json }}
+  <!-- <h2>{{recipe.name | uppercase}} Details</h2>
   <div><span>Ingredients: </span> go here </div>
-  <div><span>Instructions: </span> go here </div>
+  <div><span>Instructions: </span> go here </div> -->
   <div *ngIf="loggedIn">
     <!-- <span *ngIf=""></span> -->
     <div *ngIf="reviewing; else reviewButton">

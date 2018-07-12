@@ -26,8 +26,8 @@ public class SearchHibernate implements SearchService, HibernateSession {
 		for(int i = 0; i < getAllRecipes().size(); i++) {
 			ingredientList.clear();
 			for(int k = 0; k < getAllRecipeIngredients().size(); k++) {
-				if(getAllRecipeIngredients().get(k).getRecipeId() == getAllRecipes().get(i).getRecipeId()) {
-					ingredientList.add(getAllRecipeIngredients().get(k).getRecipeId());
+				if(getAllRecipeIngredients().get(k).getRecipe().getRecipeId() == getAllRecipes().get(i).getRecipeId()) {
+					ingredientList.add(getAllRecipeIngredients().get(k).getRecipe().getRecipeId());
 				}
 			}
 			if(ingredientIds.containsAll(ingredientList)) {
@@ -46,8 +46,8 @@ public class SearchHibernate implements SearchService, HibernateSession {
 			ingredientList.clear();
 			ingredients = 0;
 			for(int k = 0; k < getAllRecipeIngredients().size(); k++) {
-				if(getAllRecipeIngredients().get(k).getRecipeId() == getAllRecipes().get(i).getRecipeId()) {
-					ingredientList.add(getAllRecipeIngredients().get(k).getRecipeId());
+				if(getAllRecipeIngredients().get(k).getRecipe().getRecipeId() == getAllRecipes().get(i).getRecipeId()) {
+					ingredientList.add(getAllRecipeIngredients().get(k).getRecipe().getRecipeId());
 				}
 			}
 			for(int j = 0; j < ingredientList.size(); j++) {

@@ -13,6 +13,13 @@ export class RecipeService {
   private appUrl = '/Recipeak/';
   constructor(private http: HttpClient) { }
 
+  getRecipeData(id: number) {
+    return this.http.get(`${this.appUrl}recipe/${id}`)
+      .pipe(map(
+        resp => resp as [any]
+      ));
+  }
+
   getRecipe(id: number) {
 	return this.http.get(`${this.appUrl}recipe/${id}`, {withCredentials: false})
 	  .pipe(map(
@@ -30,7 +37,7 @@ export class RecipeService {
 
   addRecipe(recipe: Recipe): Observable<Recipe> {
     const body = JSON.stringify(recipe)
-    return this.http.post(`${this.appUrl}recipe/new`, body)
+    return this.http.post(`${this.appUrl}recipe/new`, body, {withCredentials: true})
       .pipe(map(
         resp => resp as Recipe
       ));

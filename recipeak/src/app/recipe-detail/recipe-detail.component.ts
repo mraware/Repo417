@@ -17,11 +17,13 @@ import { Router } from '@angular/router';
 })
 export class RecipeDetailComponent implements OnInit {
   @Input() recipe: Recipe;
+  @Input() recipeData: [any];
   loggedIn: User;
   reviewing: boolean;
   ratings: number[];
   rating: number;
   review: string;
+  
 
   constructor(private rs: RecipeService, private route: ActivatedRoute, private ps: ProfileService, private hs: HistoryService, private router: Router) { 
     this.ratings = [1,2,3,4,5];
@@ -29,7 +31,8 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getRecipe();
+//     this.getRecipe();
+    this.getRecipeData();
 
     this.ps.getLoggedIn().subscribe(loggedIn => this.loggedIn = loggedIn);
   }
@@ -47,6 +50,16 @@ export class RecipeDetailComponent implements OnInit {
     .subscribe(recipe => this.recipe = recipe);
   }
 
+  getRecipeData() {
+    const id = +this.route.snapshot.paramMap.get('id');
+    console.log(id);
+    this.rs.getRecipeData(id)
+    .subscribe(recipedata => {
+      this.recipeData = recipedata;
+      this.recipe = this.recipeData[0];
+    });
+  }
+  
   toggleReview() {
     this.reviewing = !this.reviewing;
   }
@@ -74,12 +87,4 @@ export class RecipeDetailComponent implements OnInit {
     this.router.navigateByUrl('/dashboard', {skipLocationChange: true}).then(()=>
     this.router.navigate([`detail/${this.recipe.recipeId}`]));
   }
-  
- 
-
-  
-
-
-
-
 }
