@@ -15,8 +15,11 @@ import javax.persistence.Table;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "recipe_ingredients")
+@JsonIgnoreProperties(value = { "recipe" })
 public class RecipeIngredient {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="recIng")
