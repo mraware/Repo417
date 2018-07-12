@@ -20,38 +20,49 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.User;
 import com.revature.data.FlavorDAO;
 import com.revature.data.IngredientDAO;
+import com.revature.data.SearchDAO;
 import com.revature.data.UserDAO;
-import com.revature.services.SearchService;
+import com.revature.services.RecipeService;
 
 @Controller
 @RequestMapping(value="/search")
 public class SearchController {
 	ObjectMapper om = new ObjectMapper();
 	Logger log = Logger.getLogger(SearchController.class);
-	
-	SearchService ss;
-	
+
+	@Autowired
+	SearchDAO ss;
+
+	@Autowired
+	RecipeService rs;
+
 	@Autowired
 	FlavorDAO fd;
-	
+
 	@Autowired
 	UserDAO ud;
-	
+
 	@Autowired
 	IngredientDAO id;
-	
+
 	@RequestMapping(value="/name/{name}", method=RequestMethod.GET)
 	@ResponseBody
-	public String getRecipesName(HttpSession session, @PathVariable(value="name") String name) {
+	public String getRecipesName(HttpSession session, @PathVariable(value="name") String name) throws JsonProcessingException {
+		log.trace("Name: " + name);
 		try {
 			log.debug(ss.getRecipeByName(name));
 			return om.writeValueAsString(ss.getRecipeByName(name));
 		} catch (JsonProcessingException e) {
+			log.trace(name + " not found");
 			e.printStackTrace();
+			return null;
+		} catch (Exception exception) {
+			log.trace("EXCEPTION!!!");
+			exception.printStackTrace();
 			return null;
 		}
 	}
-	
+
 	@RequestMapping(value="/flavor/{flavor}", method=RequestMethod.GET)
 	@ResponseBody
 	public String getRecipesFlavor(HttpSession session, @PathVariable(value="flavor") String flavor) {
@@ -59,11 +70,12 @@ public class SearchController {
 			log.debug(ss.getRecipeByFlavor(fd.getIdFromName(flavor)));
 			return om.writeValueAsString(ss.getRecipeByFlavor(fd.getIdFromName(flavor)));
 		} catch (JsonProcessingException e) {
+			log.trace(flavor + " not found");
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
+
 	@RequestMapping(value="/user/{user}", method=RequestMethod.GET)
 	@ResponseBody
 	public String getRecipesUser(HttpSession session, @PathVariable(value="user") String user) {
@@ -71,30 +83,32 @@ public class SearchController {
 			log.debug(ss.getRecipeByUser(ud.getIdByUsername(user)));
 			return om.writeValueAsString(ss.getRecipeByUser(ud.getIdByUsername(user)));
 		} catch (JsonProcessingException e) {
+			log.trace(user + " not found");
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
+
 	@RequestMapping(value="/contains/{contains}", method=RequestMethod.GET)
 	@ResponseBody
 	public String getRecipesContains(HttpSession session, @PathVariable(value="contains") String contains) {
-		String[] containsArray = contains.split(",");
+		String[] containsArray = contains.split(", ");
 		List<Integer> intList = new ArrayList<Integer>();
 		for(int i = 0; i < containsArray.length; i++) {
 			intList.add(id.getIdFromName(containsArray[i]));
 		}
 		try {
 			log.debug(ss.getContains(intList));
-			System.out.println(intList.toString());
-			System.out.println(ss.getContains(intList));
+			log.trace(intList.toString());
+			log.trace(ss.getContains(intList));
 			return om.writeValueAsString(ss.getContains(intList));
 		} catch (JsonProcessingException e) {
+			log.trace(contains + " not found");
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
+
 	@RequestMapping(value="/madefrom/{madefrom}", method=RequestMethod.GET)
 	@ResponseBody
 	public String getRecipesMadeFrom(HttpSession session, @PathVariable(value="madefrom") String madefrom) {
@@ -105,10 +119,11 @@ public class SearchController {
 		}
 		try {
 			log.debug(ss.getMadeFrom(intList));
-			System.out.println(intList.toString());
-			System.out.println(ss.getMadeFrom(intList));
+			log.trace(intList.toString());
+			log.trace(ss.getMadeFrom(intList));
 			return om.writeValueAsString(ss.getMadeFrom(intList));
 		} catch (JsonProcessingException e) {
+			log.trace(madefrom + " not found");
 			e.printStackTrace();
 			return null;
 		}

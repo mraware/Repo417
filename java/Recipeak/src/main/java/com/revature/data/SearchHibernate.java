@@ -1,16 +1,19 @@
-package com.revature.services;
+package com.revature.data;
+
+import static org.junit.Assert.assertFalse;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
+import org.springframework.stereotype.Component;
 
 import com.revature.beans.Recipe;
 import com.revature.beans.RecipeIngredient;
-import com.revature.data.HibernateSession;
 
-public class SearchHibernate implements SearchService, HibernateSession {
+@Component
+public class SearchHibernate implements SearchDAO, HibernateSession {
 	private volatile Session session;
 	Logger log = Logger.getLogger(SearchHibernate.class);
 	
@@ -21,16 +24,19 @@ public class SearchHibernate implements SearchService, HibernateSession {
 
 	@Override
 	public List<Recipe> getContains(List<Integer> ingredientIds) {
+		log.trace("ingredientIds 1 " + ingredientIds.toString());
 		List<Recipe> outputList = new ArrayList<Recipe>();
 		List<Integer> ingredientList = new ArrayList<Integer>();
-		int ingredients;
 		for(int i = 0; i < getAllRecipes().size(); i++) {
 			ingredientList.clear();
+			log.trace("ingredientList 1 " + ingredientList.toString());
 			for(int k = 0; k < getAllRecipeIngredients().size(); k++) {
 				if(getAllRecipeIngredients().get(k).getRecipeId() == getAllRecipes().get(i).getRecipeId()) {
 					ingredientList.add(getAllRecipeIngredients().get(k).getRecipeId());
 				}
 			}
+			log.trace("ingredientIds 2 " + ingredientIds.toString());
+			log.trace("ingredientList 2 " + ingredientList.toString());
 			if(ingredientIds.containsAll(ingredientList)) {
 				outputList.add(getAllRecipes().get(i));
 			}
@@ -65,12 +71,18 @@ public class SearchHibernate implements SearchService, HibernateSession {
 
 	@Override
 	public List<Recipe> getRecipeByName(String name) {
+		log.trace("\nNow inside getRecipeByName");
 		List<Recipe> outputList = new ArrayList<Recipe>();
+		log.trace("\n" + outputList.toString());
 		for(int i = 0; i < getAllRecipes().size(); i++) {
+			log.trace("\n" + getAllRecipes().get(i).getName());
+			log.trace("\n" + name);
 			if(getAllRecipes().get(i).getName().contains(name)) {
 				outputList.add(getAllRecipes().get(i));
+				log.trace("\n" + outputList.toString());
 			}
 		}
+		log.trace("\n" + outputList.toString());
 		return outputList;
 	}
 
@@ -103,6 +115,7 @@ public class SearchHibernate implements SearchService, HibernateSession {
 
 	@Override
 	public List<RecipeIngredient> getAllRecipeIngredients() {
+		log.trace(session.createQuery("From com.revature.beans.RecipeIngredient", RecipeIngredient.class).list().toString());
 		return (List<RecipeIngredient>) session.createQuery("From com.revature.beans.RecipeIngredient", RecipeIngredient.class).list();
 	}
 
