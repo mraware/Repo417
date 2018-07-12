@@ -7,4 +7,5 @@ public interface IngredientDAO {
 	public Ingredient getIngredientById(int id);
 	public Ingredient updateIngredient(Ingredient ingredient);
 	public void deleteIngredient(Ingredient ingredient);
+	public int getIdFromName(String name);
 }

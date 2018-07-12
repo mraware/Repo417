@@ -73,4 +73,9 @@ public class UserHibernateDAO implements UserDAO, HibernateSession
 	public List<User> getAllUsers() {
 		return session.createQuery("from User", User.class).list();
 	}
+	
+	@Override
+	public int getIdByUsername(String name) {
+		return session.get(User.class, name).getUserId();
+	}
 }

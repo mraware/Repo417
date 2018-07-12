@@ -18,7 +18,7 @@
                 <input type="text" class="form-control" id="userName" [(ngModel)]="model.userName" name="userName">
             </div>
 
-            <button type="button" class="btn btn-success" style="margin-bottom: 15px">Submit</button>
+            <button type="button" class="btn btn-success" (click)="getSearchType(searchForm);" style="margin-bottom: 15px">Submit</button>
 
             <div class="form-group">
                 <label for="IngredientAdd">Ingredients</label>
@@ -31,9 +31,17 @@
 
             <button type="button" class="btn btn-default" (click)="newIngredient(searchForm);" style="margin-bottom: 15px" [disabled]="model.ingredientAdd === '' || model.ingredientAdd == null">Add Ingredient</button>&nbsp;
 
-            <button type="button" class="btn btn-success" style="margin-bottom: 15px">Contains</button>&nbsp;
+            <button type="button" class="btn btn-success" (click)="getRecipeContains();"style="margin-bottom: 15px">Contains</button>&nbsp;
 
-            <button type="button" class="btn btn-success" style="margin-bottom: 15px">Made From</button>
+            <button type="button" class="btn btn-success" (click)="getRecipeMadeFrom();"style="margin-bottom: 15px">Made From</button>
         </form>
     </div>
 </div>
+
+<ul class="recipes">
+	<li *ngFor="let recipe of recipes">
+		<a routerLink="/detail/{{recipe.recipeId}}">
+			<span class="badge">{{recipe.recipeId}}</span> {{recipe.name}}
+		</a>
+	</li>
+</ul> 

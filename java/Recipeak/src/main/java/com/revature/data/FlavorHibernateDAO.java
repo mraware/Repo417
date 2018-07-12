@@ -44,5 +44,10 @@ public class FlavorHibernateDAO implements FlavorDAO, HibernateSession {
 		this.session = session;
 		
 	}
+	
+	@Override
+	public int getIdFromName(String name) {
+		return session.get(Flavor.class, name).getId();
+	}
 
 }

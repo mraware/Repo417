@@ -44,5 +44,10 @@ public class IngredientHibernateDAO implements IngredientDAO, HibernateSession {
 		this.session = session;
 		
 	}
+	
+	@Override
+	public int getIdFromName(String name) {
+		return session.get(Ingredient.class, name).getId();
+	}
 
 }
