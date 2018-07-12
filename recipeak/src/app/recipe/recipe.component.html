@@ -5,6 +5,16 @@
   Create a Recipe!
 </button>
 
+<div style="text-align:center"></div>
+  <form>
+    <div class="form-group">
+      <label for="recipeID">Recipe ID</label>
+      <input type="text" class="form-control" id="recipeID" required>
+    </div>
+    <button type="button" class="btn btn-danger" (click)="Burn()">FLAME ON!</button>
+    <button type="button" class="btn btn-warning" id = "sensitive" (click)="Promote()">PROMOTE!</button>
+  </form>
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -33,7 +43,7 @@
 <ul class="recipes">
 	<li *ngFor="let recipe of recipes">
 		<a routerLink="/detail/{{recipe.recipeId}}">
-			<span class="badge">{{recipe.recipeId}}</span> {{recipe.name}}
+			<span class="badge">{{recipe.recipeId}} {{EngageStar(recipe.promoted)}} {{recipe.name}} </span>   
 		</a>
 	</li>
 </ul> 

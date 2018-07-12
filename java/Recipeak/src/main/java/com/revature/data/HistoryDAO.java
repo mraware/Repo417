@@ -13,4 +13,6 @@ public interface HistoryDAO {
 	public void deleteHistory(History history);
 	public List<History> historyByUser(User user);
 	public History getHistoryByUserAndRecipe(User user, Recipe recipe);
+	public List<History> getReviewsByUser(User user);
+	public List<History> getReviewsByRecipe(Recipe recipe);
 }

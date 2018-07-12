@@ -14,8 +14,11 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { ProfileService } from './profile.service';
 import { SearchComponent } from './search/search.component';
+import { HistoryService } from './history.service';
+import { RecipeService } from './recipe.service';
 import { LogOutComponent } from './log-out/log-out.component';
 import { HistoryComponent } from './history/history.component';
+import { ReviewComponent } from './review/review.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import { HistoryComponent } from './history/history.component';
     ProfilesComponent,
     SearchComponent,
     LogOutComponent,
-    HistoryComponent
+    HistoryComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,
@@ -36,9 +40,12 @@ import { HistoryComponent } from './history/history.component';
     HttpClientModule,
     FormsModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [ProfileService],
+  providers: [ProfileService,
+    HistoryService,
+    RecipeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

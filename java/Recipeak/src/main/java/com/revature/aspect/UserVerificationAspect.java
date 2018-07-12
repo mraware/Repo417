@@ -96,6 +96,7 @@ public class UserVerificationAspect {
 		if (args[0] instanceof HttpSession) {
 			HttpSession session = (HttpSession) args[0];
 			User user = (User) session.getAttribute("user");
+			log.trace("\n" + user + "\n");
 			if (user != null) {
 				try {
 					obj = pjp.proceed();

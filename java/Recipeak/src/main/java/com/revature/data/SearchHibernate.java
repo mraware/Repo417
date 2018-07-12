@@ -31,8 +31,8 @@ public class SearchHibernate implements SearchDAO, HibernateSession {
 			ingredientList.clear();
 			log.trace("ingredientList 1 " + ingredientList.toString());
 			for(int k = 0; k < getAllRecipeIngredients().size(); k++) {
-				if(getAllRecipeIngredients().get(k).getRecipeId() == getAllRecipes().get(i).getRecipeId()) {
-					ingredientList.add(getAllRecipeIngredients().get(k).getRecipeId());
+				if(getAllRecipeIngredients().get(k).getRecipe().getRecipeId() == getAllRecipes().get(i).getRecipeId()) {
+					ingredientList.add(getAllRecipeIngredients().get(k).getRecipe().getRecipeId());
 				}
 			}
 			log.trace("ingredientIds 2 " + ingredientIds.toString());
@@ -53,8 +53,8 @@ public class SearchHibernate implements SearchDAO, HibernateSession {
 			ingredientList.clear();
 			ingredients = 0;
 			for(int k = 0; k < getAllRecipeIngredients().size(); k++) {
-				if(getAllRecipeIngredients().get(k).getRecipeId() == getAllRecipes().get(i).getRecipeId()) {
-					ingredientList.add(getAllRecipeIngredients().get(k).getRecipeId());
+				if(getAllRecipeIngredients().get(k).getRecipe().getRecipeId() == getAllRecipes().get(i).getRecipeId()) {
+					ingredientList.add(getAllRecipeIngredients().get(k).getRecipe().getRecipeId());
 				}
 			}
 			for(int j = 0; j < ingredientList.size(); j++) {

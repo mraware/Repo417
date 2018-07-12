@@ -1,5 +1,37 @@
-<div *ngIf="recipe">
-  <h2>{{recipe.name | uppercase}} Details</h2>
+<div *ngIf="recipeData">
+  {{ recipeData[0] | json}}
+  {{ recipeData[1] | json }}
+  {{ recipeData[2] | json }}
+  <!-- <h2>{{recipe.name | uppercase}} Details</h2>
   <div><span>Ingredients: </span> go here </div>
-  <div><span>Instructions: </span> go here </div>
+  <div><span>Instructions: </span> go here </div> -->
+  <div *ngIf="loggedIn">
+    <!-- <span *ngIf=""></span> -->
+    <div *ngIf="reviewing; else reviewButton">
+      <button class="btn btn-primary" (click)="toggleReview()">Cancel</button>
+      
+      <div>
+        <h3>Score:
+        <select [(ngModel)]="rating">
+          <option *ngFor="let r of ratings" [ngValue]="r">{{r}}</option>
+        </select>
+        </h3>
+      </div>
+      <div>
+        <h3>Review:</h3>
+        <div>
+        <textarea [(ngModel)]="review" style="width:100%; max-width: 700px; height:200px">
+          {{review}}
+        </textarea>
+        </div>
+      </div>
+      <div>
+        <button class="btn btn-success" (click)="reviewRecipe()">Submit</button>
+      </div>
+    </div>
+    <ng-template #reviewButton>
+      <button class="btn btn-primary" (click)="toggleReview()">Review</button>
+    </ng-template>
+  </div>
+  <app-review [id]=recipe.recipeId [type]='"recipe"'></app-review>
 </div> 
