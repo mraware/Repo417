@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Recipe } from '../recipe';
 /*import {RECIPES} from '../mock-recipes';*/
 import { RecipeService } from '../recipe.service';
 import { User } from '../user';
 import { Flavor } from '../flavor';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-recipe',
@@ -15,10 +16,20 @@ export class RecipeComponent implements OnInit {
   recipes: Recipe[]; 
   recipe: Recipe;
   id : number;
-  constructor(private recipeService: RecipeService) { }
+  constructor(private recipeService: RecipeService, private http: HttpClient) { }
 
   ngOnInit() {
+    let user = new User(0,"","","","","");
     this.getRecipes();
+    this.http.get('/Recipeak/login/session').pipe(map(resp => resp as User )).subscribe(resp => newFunction(resp));
+    function newFunction(resp)
+    {
+      user = resp;
+      if(user.type==="user")
+      {
+        document.getElementById("sensitive").style.display="none";
+      }
+    }
   }
 
   getRecipes(): void {
@@ -70,5 +81,32 @@ export class RecipeComponent implements OnInit {
     console.log("The new burn level is " +brecipe.burns);
     recipeService.updateRecipe(brecipe).subscribe(recipe => brecipe = recipe);
     }
+  }
+
+  Promote() : void
+  {
+    console.log("PROMOTE HAS BEEN CALLED.");
+    this.id = Number ((<HTMLInputElement>document.getElementById("recipeID")).value);
+    let brecipe = new Recipe();
+    this.recipeService.getRecipe(this.id).subscribe(resp => GoldStar (resp,this.recipeService));
+    function GoldStar(resp, recipeService)
+    {
+      brecipe = resp;
+      console.log(brecipe);
+      console.log(brecipe.recipeId);
+      console.log("The old promoted level is "+ brecipe.promoted);
+      brecipe.promoted=1;
+      console.log("The new promoted level is " +brecipe.promoted);
+      recipeService.updateRecipe(brecipe).subscribe(recipe => brecipe = recipe);
+    }
+  }
+
+  EngageStar(promoted) 
+  {
+    if(promoted>0)
+    {
+      return "PROMOTED!!!" 
+    }
+    return null;
   }
 }
