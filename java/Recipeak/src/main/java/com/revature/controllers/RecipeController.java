@@ -69,7 +69,6 @@ public class RecipeController {
 		}
 	}
 	
-	
 	@RequestMapping(value="/{id}/reviews", method=RequestMethod.GET)
 	@ResponseBody
 	public String getReviewsFromRecipe(@PathVariable(value="id") int id) {
@@ -77,6 +76,28 @@ public class RecipeController {
 		try {
 			return om.writeValueAsString(hs.getReviewsByRecipe(recipe));
 		} catch (JsonProcessingException e) {
+      		e.printStackTrace();
+			    return null;
+		}
+	}
+
+	@RequestMapping(value="/update", method=RequestMethod.POST)
+	@ResponseBody
+	public String updateRecipe (@RequestBody String s)
+	{
+		try 
+		{
+			String recipe = rs.updateRecipe(om.readValue(s, Recipe.class)).toString();
+			return recipe;
+		}
+		catch (JsonProcessingException e) 
+		{
+			e.printStackTrace();
+			return null;
+		} 
+		catch (IOException e ) 
+		{
+
 			e.printStackTrace();
 			return null;
 		}
