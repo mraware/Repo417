@@ -1,4 +1,5 @@
 <div class="table-responsive" *ngIf="history && history.length > 0; else noHistory">
+  <h1>History</h1>
   <table class="table table-hover">
     <tr>
       <th>Recipe</th>
@@ -17,4 +18,4 @@
     </tr>
   </table>
   </div>
-  <ng-template #noHistory><h1>User has no history</h1></ng-template>
+  <ng-template #noHistory><h1>No history available</h1></ng-template>

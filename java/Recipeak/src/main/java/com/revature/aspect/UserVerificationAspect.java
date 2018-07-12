@@ -12,6 +12,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.revature.beans.Recipe;
 import com.revature.beans.User;
 import com.revature.services.UserService;
 
@@ -37,6 +38,8 @@ public class UserVerificationAspect {
 				id = (int) args[1];
 			} else if (args[1] instanceof User) {
 				id = ((User)args[1]).getUserId();
+			} else if (args[1] instanceof Recipe) {
+				id = ((Recipe)args[1]).getCreator().getUserId();
 			} else {
 				log.debug(args[1]);
 				return null;
@@ -107,6 +110,27 @@ public class UserVerificationAspect {
 		return null;
 	}
 	
+	@Around("allIsStar()")
+	public Object isStar(ProceedingJoinPoint pjp) throws Throwable {
+		Object obj = null;
+		Object[] args = pjp.getArgs();
+		log.trace(Arrays.toString(args));
+		if (args[0] instanceof HttpSession) {
+			HttpSession session = (HttpSession) args[0];
+			User user = (User) session.getAttribute("user");
+			if ("star".equals(user.getType())) {
+				try {
+					obj = pjp.proceed();
+				} catch (Throwable e) {
+					throw e;
+				}
+				return obj;
+			}
+			
+		}
+		return null;
+	}
+	
 	@Pointcut("execution(* com.revature.controllers..verifiedUser*(..))")
 	public void allVerifiedUser() {}
 	
@@ -115,4 +139,7 @@ public class UserVerificationAspect {
 	
 	@Pointcut("execution(* com.revature.controllers..isUser*(..))")
 	public void allIsUser() {}
+	
+	@Pointcut("execution(* com.revature.controllers..isStar*(..))")
+	public void allIsStar() {}
 }

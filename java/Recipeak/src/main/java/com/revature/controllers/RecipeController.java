@@ -24,6 +24,7 @@ import com.revature.beans.User;
 import com.revature.services.IngredientService;
 import com.revature.services.InstructionService;
 import com.revature.services.RecipeIngredientService;
+import com.revature.services.HistoryService;
 import com.revature.services.RecipeService;
 
 @Controller
@@ -40,6 +41,8 @@ public class RecipeController {
 	RecipeIngredientService ris;
 	@Autowired
 	InstructionService ins;
+  @Autowired
+	HistoryService hs;
 	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	@ResponseBody
@@ -87,6 +90,40 @@ public class RecipeController {
 			e.printStackTrace();
 			return null;
 		} catch (IOException e ) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@RequestMapping(value="/{id}/reviews", method=RequestMethod.GET)
+	@ResponseBody
+	public String getReviewsFromRecipe(@PathVariable(value="id") int id) {
+		Recipe recipe = rs.getRecipeById(id);
+		try {
+			return om.writeValueAsString(hs.getReviewsByRecipe(recipe));
+		} catch (JsonProcessingException e) {
+      		e.printStackTrace();
+			    return null;
+		}
+	}
+
+	@RequestMapping(value="/update", method=RequestMethod.POST)
+	@ResponseBody
+	public String updateRecipe (@RequestBody String s)
+	{
+		try 
+		{
+			String recipe = rs.updateRecipe(om.readValue(s, Recipe.class)).toString();
+			return recipe;
+		}
+		catch (JsonProcessingException e) 
+		{
+			e.printStackTrace();
+			return null;
+		} 
+		catch (IOException e ) 
+		{
+
 			e.printStackTrace();
 			return null;
 		}

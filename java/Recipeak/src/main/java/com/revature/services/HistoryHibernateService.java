@@ -28,6 +28,10 @@ public class HistoryHibernateService implements HistoryService {
 
 	@Override
 	public History updateHistory(History history) {
+		if (history.getId() == 0) {
+			History oldHistory = hd.getHistoryByUserAndRecipe(history.getUser(), history.getRecipe());
+			history.setId(oldHistory.getId());
+		}
 		return hd.updateHistory(history);
 	}
 
@@ -50,5 +54,23 @@ public class HistoryHibernateService implements HistoryService {
 			hd.addHistory(history);
 		}
 		return history;
+	}
+
+	@Override
+	public List<History> getReviewsByUser(User user) {
+		return hd.getReviewsByUser(user);
+	}
+
+	@Override
+	public List<History> getReviewsByRecipe(Recipe recipe) {
+		return hd.getReviewsByRecipe(recipe);
+	}
+
+	@Override
+	public History addReview(History history) {
+		History oldHistory = hd.getHistoryByUserAndRecipe(history.getUser(), history.getRecipe());
+		history.setId(oldHistory.getId());
+		history.setSaved(oldHistory.getSaved());
+		return hd.updateHistory(history);
 	}
 }

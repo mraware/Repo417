@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { LoginComponent } from './login/login.component';
+import { LogOutComponent } from './log-out/log-out.component';
 import { HistoryComponent } from './history/history.component';
 
 const routes = [
@@ -17,7 +18,8 @@ const routes = [
   { path: 'profile/:id', component: ProfileComponent },
   { path: 'profiles', component: ProfilesComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'profile/:id/history', component: HistoryComponent },
+  { path: 'profile/:id/history', component: HistoryComponent},
+  { path: 'logout', component: LogOutComponent },
 ];
 
 @NgModule({

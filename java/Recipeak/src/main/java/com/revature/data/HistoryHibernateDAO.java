@@ -67,4 +67,22 @@ public class HistoryHibernateDAO implements HistoryDAO, HibernateSession {
 		return query.uniqueResult();
 	}
 
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<History> getReviewsByUser(User user) {
+		Query<History> query = session.createQuery("FROM com.revature.beans.History hist "
+				+ "WHERE hist.user=:user AND hist.score>0");
+		query.setParameter("user", user);
+		return query.list();
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<History> getReviewsByRecipe(Recipe recipe) {
+		Query<History> query = session.createQuery("FROM com.revature.beans.History hist "
+				+ "WHERE hist.recipe=:recipe AND hist.score>0");
+		query.setParameter("recipe", recipe);
+		return query.list();
+	}
+
 }
