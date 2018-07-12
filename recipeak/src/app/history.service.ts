@@ -24,6 +24,7 @@ export class HistoryService {
   }
 
   getReviewsByUser(id: number) {
+    console.log(`${this.url}user/${id}/reviews`);
     return this.http.get(`${this.url}user/${id}/reviews`)
     .pipe(map(resp => resp as History[]));
   }

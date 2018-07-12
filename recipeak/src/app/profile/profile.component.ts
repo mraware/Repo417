@@ -40,14 +40,4 @@ export class ProfileComponent implements OnInit {
     this.ps.updateUser(this.profile).subscribe(
       profile => this.profile = profile);
   }
-
-}
-
-export interface Profile {
-  userId: number;
-  type: string;
-  username: string;
-  password: string;
-  firstName: string;
-  lastName: string;
 }

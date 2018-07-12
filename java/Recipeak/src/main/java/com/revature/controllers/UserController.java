@@ -73,7 +73,9 @@ public class UserController {
 	@RequestMapping(value="/{id}/reviews", method=RequestMethod.GET)
 	@ResponseBody
 	public String getReviewsFromUser(@PathVariable(value="id") int id) {
+		log.debug(id);
 		User user = us.getUserById(id);
+		log.debug(user);
 		try {
 			return om.writeValueAsString(hs.getReviewsByUser(user));
 		} catch (JsonProcessingException e) {
