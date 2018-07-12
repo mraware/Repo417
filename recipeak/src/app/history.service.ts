@@ -28,4 +28,9 @@ export class HistoryService {
     return this.http.get(`${this.url}user/${id}/reviews`)
     .pipe(map(resp => resp as History[]));
   }
+
+  addReview(history: History) {
+    return this.http.post(`${this.url}history/review`, history)
+    .pipe(map(resp => resp as History));
+  }
 }
