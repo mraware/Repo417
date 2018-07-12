@@ -35,4 +35,11 @@ export class RecipeService {
         resp => resp as Recipe
       ));
   }
+
+  updateRecipe(recipe: Recipe) {
+    const body = JSON.stringify(recipe)
+    return this.http.post(`${this.appUrl}recipe/update`, body)
+    .pipe(map(resp => resp as Recipe));
+  }
+
 }

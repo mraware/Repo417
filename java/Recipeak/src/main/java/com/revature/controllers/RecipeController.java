@@ -65,5 +65,26 @@ public class RecipeController {
 			return null;
 		}
 	}
+	
+	@RequestMapping(value="/update", method=RequestMethod.POST)
+	@ResponseBody
+	public String updateRecipe (@RequestBody String s)
+	{
+		try 
+		{
+			String recipe = rs.updateRecipe(om.readValue(s, Recipe.class)).toString();
+			return recipe;
+		}
+		catch (JsonProcessingException e) 
+		{
+			e.printStackTrace();
+			return null;
+		} 
+		catch (IOException e ) 
+		{
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 }
