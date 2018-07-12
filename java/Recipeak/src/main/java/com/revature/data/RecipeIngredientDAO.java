@@ -10,4 +10,5 @@ public interface RecipeIngredientDAO {
 	public RecipeIngredient updateRecipeIngredient(RecipeIngredient ingredient);
 	public void deleteRecipeIngredient(RecipeIngredient ingredient);
 	public List<RecipeIngredient> getAll();
+	public List<RecipeIngredient> getRecipeIngredients(int recipeId);
 }

@@ -43,7 +43,7 @@ export class RecipeComponent implements OnInit {
     console.log((<HTMLInputElement>document.getElementById("flavaFlav")).value);
     arecipe.name=(<HTMLInputElement>document.getElementById("newName")).value;
     arecipe.flavor = new Flavor(0, (<HTMLInputElement>document.getElementById("flavaFlav")).value);
-    arecipe.creator = new User(3,"admin","pawling","admin","Isaac","Pawling");
+    arecipe.creator = new User(0,"","","","","");
     arecipe.privacy = 'public';
     arecipe.burns = 1;
     arecipe.promoted = 0;

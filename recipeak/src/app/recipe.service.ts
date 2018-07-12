@@ -30,7 +30,7 @@ export class RecipeService {
 
   addRecipe(recipe: Recipe): Observable<Recipe> {
     const body = JSON.stringify(recipe)
-    return this.http.post(`${this.appUrl}recipe/new`, body)
+    return this.http.post(`${this.appUrl}recipe/new`, body, {withCredentials: true})
       .pipe(map(
         resp => resp as Recipe
       ));

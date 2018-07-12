@@ -2,21 +2,34 @@ package com.revature.services;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.revature.beans.Ingredient;
 import com.revature.beans.Recipe;
+import com.revature.beans.RecipeIngredient;
 import com.revature.beans.User;
+import com.revature.data.IngredientDAO;
 import com.revature.data.RecipeDAO;
+import com.revature.data.RecipeIngredientDAO;
+import com.revature.data.RecipeIngredientHibernate;
 import com.revature.data.UserDAO;
 
 @Service
 public class SpringHibernateService implements UserService,
-											   RecipeService {
+											   RecipeService,
+											   IngredientService,
+											   RecipeIngredientService {
+	Logger log = Logger.getLogger(SpringHibernateService.class);
 	@Autowired
 	UserDAO ud;
 	@Autowired
 	RecipeDAO rd;
+	@Autowired
+	IngredientDAO id;
+	@Autowired
+	RecipeIngredientDAO rid;
 
 	@Override
 	public User addUser(User user) {
@@ -67,6 +80,18 @@ public class SpringHibernateService implements UserService,
 	@Override
 	public List<Recipe> getAllRecipes() {
 		return rd.getAll();
+	}
+
+	@Override
+	public List<Ingredient> getIngredientsByIds(int[] ids) {
+		// should be able to just call the IngredientDAO function here
+		return id.getIngredients(ids);
+	}
+
+	@Override
+	public List<RecipeIngredient> getRecipeIngredientByRecipeId(int recipeId) {
+		log.debug("ROBOT HELL : In a function with a long name!!");
+		return rid.getRecipeIngredients(recipeId);
 	}
 
 }
