@@ -15,7 +15,6 @@ import com.revature.data.IngredientDAO;
 import com.revature.data.InstructionDAO;
 import com.revature.data.RecipeDAO;
 import com.revature.data.RecipeIngredientDAO;
-import com.revature.data.RecipeIngredientHibernate;
 import com.revature.data.UserDAO;
 
 @Service

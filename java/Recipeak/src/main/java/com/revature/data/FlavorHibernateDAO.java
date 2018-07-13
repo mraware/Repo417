@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 
 import com.revature.beans.Flavor;
-import com.revature.beans.History;
 
 
 @Component
@@ -47,6 +46,7 @@ public class FlavorHibernateDAO implements FlavorDAO, HibernateSession {
 		
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public int getIdFromName(String name) {
 		Query<Flavor> query = session.createQuery("FROM com.revature.beans.Flavor flav "

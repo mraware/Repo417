@@ -6,7 +6,6 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Component;
 
-import com.revature.beans.History;
 import com.revature.beans.Recipe;
 import com.revature.beans.User;
 

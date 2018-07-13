@@ -15,9 +15,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.User;
 import com.revature.services.HistoryService;
 import com.revature.services.UserService;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Controller
 @RequestMapping(value="/user")
