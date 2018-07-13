@@ -38,7 +38,8 @@ public class RegisterController {
 	public String registerUser(HttpSession session, @RequestBody String userInfo) {
 		log.trace(userInfo);
 		String[] userList = userInfo.split(" ");
-		User newUser = new User(0, "user", userList[1], userList[2], userList[3], userList[4]);
+		User newUser = new User(0, "user", userList[0], userList[1], userList[2], userList[3]);
+		log.trace(newUser.toString());
 		try {
 			return om.writeValueAsString(us.addUser(newUser));
 		} catch (JsonProcessingException e) {
