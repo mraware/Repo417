@@ -8,8 +8,8 @@
         <th id="review-column-4">Review</th>
       </tr>
       <tr *ngFor="let review of reviews">
-        <td><a href="/detail/{{review.recipe.recipeId}}">{{review.recipe.name}}</a></td>
-        <td><a href="/profile/{{review.user.userId}}">{{review.user.firstName}} {{review.user.lastName}}</a></td>
+        <td><a routerLink="/detail/{{review.recipe.recipeId}}">{{review.recipe.name}}</a></td>
+        <td><a routerLink="/profile/{{review.user.userId}}">{{review.user.firstName}} {{review.user.lastName}}</a></td>
         <td>{{review.score}}</td>
         <td>{{review.review}}</td>
       </tr>

@@ -25,15 +25,15 @@ public class RecipeIngredient {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="recIng")
 	@SequenceGenerator(name="recIng", sequenceName="recipe_ingredients_sq", allocationSize=1)
 	@Column(name = "recipeingredient_id")
-	int recipeIngredientId;
+	private int recipeIngredientId;
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "recipe_id", updatable=false)
-	Recipe recipe;
+	private Recipe recipe;
 	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "ingredient", updatable=false)
-	Ingredient ingredient;
-	double amount;
-	String unit;
+	private Ingredient ingredient;
+	private double amount;
+	private String unit;
 	
 	public RecipeIngredient() {
 		super();

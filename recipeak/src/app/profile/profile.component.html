@@ -1,5 +1,8 @@
 <div *ngIf="profile">
   <div style="text-align: right; float: right;">
+    <span *ngIf="loggedIn && (profile.userId == loggedIn.userId || loggedIn.type == 'admin')">
+        <button class="btn btn-secondary btn-lg" (click)="viewHistory()">History</button>
+    </span>
     <span *ngIf="loggedIn && loggedIn.type == 'admin'">
       <span *ngIf="profile.type == 'user'">
         <button class="btn btn-success btn-lg" (click)="promoteUser()">Promote</button>
@@ -14,7 +17,24 @@
     </span>
   </div>
   <div><h1>{{profile.firstName}} {{profile.lastName}}</h1><div>
+  <div>
+    <h2>Recipes</h2>
+    <table class="table table-hover">
+      <tr>
+        <th>Recipe</th>
+        <th>Creator</th>
+        <th>Flavor</th>
+        <th>Burns</th>
+      </tr>
+      <tr *ngFor="let recipe of recipes">
+        <td><a routerLink="/detail/{{recipe.recipeId}}">{{recipe.name}}</a></td>
+        <td><a routerLink="/profile/{{recipe.creator.userId}}">{{recipe.creator.firstName}} {{recipe.creator.lastName}}</a></td>
+        <td>{{recipe.flavor.name | titlecase}}</td>
+        <td>{{recipe.burns}}</td>
+      </tr>
+    </table>
+  </div>
   <div><app-review [id]=profile.userId [type]='"user"'></app-review></div>
-  <div>Recipes</div>
+  
 </div>
     

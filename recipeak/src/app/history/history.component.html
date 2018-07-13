@@ -4,14 +4,14 @@
     <tr>
       <th>Recipe</th>
       <th>Creator</th>
-      <th>Saved</th>
+      <!-- <th>Saved</th> -->
       <th>Score</th>
       <th>Review</th>
     </tr>
     <tr *ngFor="let hist of history">
-      <td>{{hist.recipe.name}}</td>
-      <td>{{hist.user.firstName}} {{hist.user.lastName}}</td>
-      <td>{{hist.saved}}</td>
+      <td><a routerLink="/detail/{{hist.recipe.recipeId}}">{{hist.recipe.name}}</a></td>
+      <td><a routerLink="/profile/{{hist.recipe.creator.userId}}">{{hist.recipe.creator.firstName}} {{hist.recipe.creator.lastName}}</a></td>
+      <!-- <td>{{hist.saved}}</td> -->
       <td>{{hist.score}}</td>
       <td>{{hist.review}}</td>
       <!-- <td><button class="btn btn-primary btn-sm" (click)="viewProfile(profile.userId)">View</button></td> -->
