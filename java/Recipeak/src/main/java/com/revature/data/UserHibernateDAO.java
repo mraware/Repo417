@@ -10,7 +10,6 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Component;
 
-import com.revature.beans.History;
 import com.revature.beans.User;
 
 @Component
@@ -76,6 +75,7 @@ public class UserHibernateDAO implements UserDAO, HibernateSession
 		return session.createQuery("from User", User.class).list();
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public int getIdByUsername(String name) {
 		Query<User> query = session.createQuery("FROM com.revature.beans.User user "

@@ -12,7 +12,6 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.revature.beans.History;
 import com.revature.beans.Recipe;
 import com.revature.beans.User;
 import com.revature.services.HistoryService;

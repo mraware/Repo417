@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import com.revature.beans.Instruction;
 import com.revature.beans.Recipe;
-import com.revature.beans.RecipeIngredient;
 
 
 @Component

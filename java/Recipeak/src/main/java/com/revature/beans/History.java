@@ -12,8 +12,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 @Entity
 @Table(name="History")

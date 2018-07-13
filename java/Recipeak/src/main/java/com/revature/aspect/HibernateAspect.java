@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import com.revature.data.HibernateSession;
 import com.revature.utils.HibernateUtil;
-import javax.servlet.http.HttpSession;
 
 @Component
 @Aspect
