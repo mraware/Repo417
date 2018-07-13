@@ -8,5 +8,6 @@ public interface IngredientDAO {
 	public Ingredient getIngredientById(int id);
 	public Ingredient updateIngredient(Ingredient ingredient);
 	public void deleteIngredient(Ingredient ingredient);
+	public Integer getIdFromName(String name);
 	public List<Ingredient> getIngredients(int[] Id);
 }

@@ -1,5 +1,5 @@
 import { RecipeService } from './../recipe.service';
-import { ProfileService } from './../profile.service';
+import { ProfileService } from '../profile.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../user';

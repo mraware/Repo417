@@ -6,11 +6,10 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Component;
 
-
 import com.revature.beans.Ingredient;
-import com.revature.beans.Recipe;
 
 
 @Component
@@ -47,6 +46,15 @@ public class IngredientHibernateDAO implements IngredientDAO, HibernateSession {
 	public void setSession(Session session) {
 		this.session = session;
 		
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public Integer getIdFromName(String name) {
+		Query<Ingredient> query = session.createQuery("FROM com.revature.beans.Ingredient ing "
+				+ "WHERE ing.ingredient=:name");
+		query.setParameter("name", name);
+		return (Integer) query.uniqueResult().getId();
 	}
 
 	@Override
