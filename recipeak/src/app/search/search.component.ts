@@ -16,7 +16,14 @@ const ingredients = ['bread', 'peanut butter', 'butter', 'salt', 'black pepper',
 
 export class SearchComponent {
 
-  model = new Ingredient('ingredient model');
+  // model = new Ingredient('ingredient model');
+  model = {
+    "recipeName": null,
+    "flavor": null,
+    "ingredientAdd": null,
+    "userName": null
+  };
+  
 
   submitted = false;
 
