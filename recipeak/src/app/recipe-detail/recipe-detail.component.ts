@@ -18,6 +18,7 @@ import { Router } from '@angular/router';
 export class RecipeDetailComponent implements OnInit {
   @Input() recipeData: [any];
   @Input() recipe: Recipe;
+  @Input() smallView: boolean;
   loggedIn: User;
   reviewing: boolean;
   ratings: number[];
@@ -88,5 +89,14 @@ export class RecipeDetailComponent implements OnInit {
   success() {
     this.router.navigateByUrl('/dashboard', {skipLocationChange: true}).then(()=>
     this.router.navigate([`detail/${this.recipe.recipeId}`]));
+  }
+
+  isPromoted() {
+    if (this.recipe) {
+      if (this.recipe.promoted != 0) {
+        return "Yes";
+      }
+    }
+    return "No";
   }
 }

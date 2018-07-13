@@ -49,4 +49,12 @@ export class RecipeService {
     .pipe(map(resp => resp as Recipe));
   }
 
+  
+  getRecipesByUser(id: number): Observable<Recipe[]> {
+    return this.http.get(`${this.appUrl}recipe/all/${id}`, {withCredentials: false})
+      .pipe(map(
+      resp => resp as Recipe[]
+      ));
+    }
+
 }
