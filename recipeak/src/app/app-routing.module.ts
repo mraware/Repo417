@@ -11,6 +11,7 @@ import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './login/login.component';
 import { LogOutComponent } from './log-out/log-out.component';
 import { HistoryComponent } from './history/history.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -23,6 +24,7 @@ const routes = [
   { path: 'login', component: LoginComponent },
   { path: 'profile/:id/history', component: HistoryComponent},
   { path: 'logout', component: LogOutComponent },
+  { path: 'register', component: RegisterComponent }
 ];
 
 @NgModule({

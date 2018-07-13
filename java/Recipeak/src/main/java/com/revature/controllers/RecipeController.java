@@ -32,7 +32,7 @@ import com.revature.services.RecipeService;
 public class RecipeController {
 	ObjectMapper om = new ObjectMapper();
 	Logger log = Logger.getLogger(RecipeController.class);
-	
+
 	@Autowired
 	RecipeService rs;
 	@Autowired
@@ -41,9 +41,9 @@ public class RecipeController {
 	RecipeIngredientService ris;
 	@Autowired
 	InstructionService ins;
-  @Autowired
+	@Autowired
 	HistoryService hs;
-	
+
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	@ResponseBody
 	public String getRecipes() {
@@ -55,7 +55,7 @@ public class RecipeController {
 			return null;
 		}
 	}
-	
+  
 	@RequestMapping(value="/all/{id}", method=RequestMethod.GET)
 	@ResponseBody
 	public String getRecipesByUserId(@PathVariable(value="id") int id) {
@@ -66,26 +66,26 @@ public class RecipeController {
 			return null;
 		}
 	}
-	
+
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	@ResponseBody
 	public String getRecipe(HttpSession session, @PathVariable(value="id") int id) {
 		try {
 			Recipe recipe = rs.getRecipeById(id);
 			List<RecipeIngredient> recipeIngList = ris.getRecipeIngredientByRecipe(recipe);
-			
+
 			// lastly, return the set of instructions for the recipe
 			List<Instruction> recipeInstr = ins.getInstructionsByRecipe(recipe);
-			
+
 			return "[{ \"recipe\" :" + om.writeValueAsString(recipe) + "}, " +
-					"{ \"recipeIngredients\" :" + om.writeValueAsString(recipeIngList) + "}, " +
-					"{ \"instructions\" :" + om.writeValueAsString(recipeInstr) + "}]";
+			"{ \"recipeIngredients\" :" + om.writeValueAsString(recipeIngList) + "}, " +
+			"{ \"instructions\" :" + om.writeValueAsString(recipeInstr) + "}]";
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
+
 	@RequestMapping(value="/new", method=RequestMethod.POST)
 	@ResponseBody
 	public String isUserAddRecipe(HttpSession session, @RequestBody String r) {
@@ -105,7 +105,7 @@ public class RecipeController {
 			return null;
 		}
 	}
-	
+
 	@RequestMapping(value="/{id}/reviews", method=RequestMethod.GET)
 	@ResponseBody
 	public String getReviewsFromRecipe(@PathVariable(value="id") int id) {
@@ -113,8 +113,8 @@ public class RecipeController {
 		try {
 			return om.writeValueAsString(hs.getReviewsByRecipe(recipe));
 		} catch (JsonProcessingException e) {
-      		e.printStackTrace();
-			    return null;
+			e.printStackTrace();
+			return null;
 		}
 	}
 

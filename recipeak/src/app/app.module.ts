@@ -19,6 +19,7 @@ import { RecipeService } from './recipe.service';
 import { LogOutComponent } from './log-out/log-out.component';
 import { HistoryComponent } from './history/history.component';
 import { ReviewComponent } from './review/review.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ReviewComponent } from './review/review.component';
     SearchComponent,
     LogOutComponent,
     HistoryComponent,
+    RegisterComponent,
     ReviewComponent
   ],
   imports: [
