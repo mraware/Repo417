@@ -124,7 +124,7 @@ public class RecipeController {
 	{
 		try 
 		{
-			String recipe = rs.updateRecipe(om.readValue(s, Recipe.class)).toString();
+			String recipe = om.writeValueAsString(rs.updateRecipe(om.readValue(s, Recipe.class)));
 			return recipe;
 		}
 		catch (JsonProcessingException e) 

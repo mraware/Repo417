@@ -23,7 +23,7 @@ export class RecipeService {
   getRecipe(id: number) {
 	return this.http.get(`${this.appUrl}recipe/${id}`, {withCredentials: false})
 	  .pipe(map(
-		resp => resp as Recipe
+		resp => resp[0].recipe as Recipe
 	  ));
   }
 

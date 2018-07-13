@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../user';
 import { Recipe } from '../recipe';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -16,7 +17,7 @@ export class ProfileComponent implements OnInit {
   profile: User;
   recipes: Recipe[];
 
-  constructor(private ps: ProfileService, private route: ActivatedRoute, private rs: RecipeService) { }
+  constructor(private ps: ProfileService, private route: ActivatedRoute, private rs: RecipeService, private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -50,5 +51,9 @@ export class ProfileComponent implements OnInit {
     this.profile.type = 'user';
     this.ps.updateUser(this.profile).subscribe(
       profile => this.profile = profile);
+  }
+
+  viewHistory() {
+    this.router.navigate([`/profile/${this.profile.userId}/history`]);
   }
 }

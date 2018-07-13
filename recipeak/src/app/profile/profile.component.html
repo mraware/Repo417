@@ -1,5 +1,8 @@
 <div *ngIf="profile">
   <div style="text-align: right; float: right;">
+    <span *ngIf="loggedIn && (profile.userId == loggedIn.userId || loggedIn.type == 'admin')">
+        <button class="btn btn-secondary btn-lg" (click)="viewHistory()">History</button>
+    </span>
     <span *ngIf="loggedIn && loggedIn.type == 'admin'">
       <span *ngIf="profile.type == 'user'">
         <button class="btn btn-success btn-lg" (click)="promoteUser()">Promote</button>
