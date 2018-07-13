@@ -1,6 +1,5 @@
 package com.revature.controllers;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,14 +9,12 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.beans.User;
 import com.revature.data.FlavorDAO;
 import com.revature.data.IngredientDAO;
 import com.revature.data.SearchDAO;
@@ -112,7 +109,7 @@ public class SearchController {
 	@RequestMapping(value="/madefrom/{madefrom}", method=RequestMethod.GET)
 	@ResponseBody
 	public String getRecipesMadeFrom(HttpSession session, @PathVariable(value="madefrom") String madefrom) {
-		String[] madefromArray = madefrom.split(",");
+		String[] madefromArray = madefrom.split(", ");
 		List<Integer> intList = new ArrayList<Integer>();
 		for(int i = 0; i < madefromArray.length; i++) {
 			intList.add(id.getIdFromName(madefromArray[i]));
