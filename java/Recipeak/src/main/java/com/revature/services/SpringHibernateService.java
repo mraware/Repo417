@@ -86,6 +86,11 @@ public class SpringHibernateService implements UserService,
 	public List<Recipe> getAllRecipes() {
 		return rd.getAll();
 	}
+	
+	@Override
+	public List<Recipe> getAllRecipesByUserId(int id) {
+		return rd.getAllByUser(ud.getUserById(id));
+	}
 
 	/*
 	 * 

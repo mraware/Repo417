@@ -16,19 +16,21 @@ export class RecipeComponent implements OnInit {
   recipes: Recipe[]; 
   recipe: Recipe;
   id : number;
+  loggedIn: User;
   constructor(private recipeService: RecipeService, private http: HttpClient) { }
 
   ngOnInit() {
-    let user = new User(0,"","","","","");
     this.getRecipes();
-    this.http.get('/Recipeak/login/session').pipe(map(resp => resp as User )).subscribe(resp => newFunction(resp));
-    function newFunction(resp)
+    this.http.get('/Recipeak/login/session').pipe(map(resp => resp as User )).subscribe(resp => this.newFunction(resp));
+
+  }
+
+  newFunction(resp)
+  {
+    this.loggedIn = resp;
+    if(this.loggedIn && this.loggedIn.type==="user")
     {
-      user = resp;
-      if(user.type==="user")
-      {
-        document.getElementById("sensitive").style.display="none";
-      }
+      document.getElementById("sensitive").style.display="none";
     }
   }
 

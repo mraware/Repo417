@@ -1,11 +1,65 @@
 <div *ngIf="recipeData">
-  {{ recipeData[0] | json}}
+  <!-- {{ recipeData[0] | json}}
   {{ recipeData[1] | json }}
-  {{ recipeData[2] | json }}
+  {{ recipeData[2] | json }} -->
   <!-- <h2>{{recipe.name | uppercase}} Details</h2>
   <div><span>Ingredients: </span> go here </div>
   <div><span>Instructions: </span> go here </div> -->
-  <div *ngIf="loggedIn">
+  <div>
+  <h1>{{recipe.name}}</h1>
+  <table class="table table-hover table-bordered" style="float:left; width:50%;">
+    <tr>
+      <th>Creator</th>
+    </tr>
+    <tr>
+      <td>{{recipe.creator.firstName}} {{recipe.creator.lastName}}</td>
+    </tr>
+    <tr>
+      <th>Flavor</th>
+    </tr>
+    <tr>
+      <td>{{recipe.flavor.name | titlecase}}</td>
+    </tr>
+    <tr>
+      <th>Ingredients</th>
+    </tr>
+    <tr style="height:200px">
+      <td>
+        <ul>
+          <li *ngFor="let ingredient of recipeData[1].recipeIngredients">
+            {{ingredient.ingredient.ingredient | titlecase}}
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+
+  <table class="table table-hover table-bordered" style="width:50%;">
+    <tr>
+      <th>Promoted</th>
+    </tr>
+    <tr>
+      <td>{{isPromoted()}}</td>
+    </tr>
+    <tr>
+      <th>Burns</th>
+    </tr>
+    <tr>
+      <td>{{recipe.burns}}</td>
+    </tr>
+    <tr>
+      <th>Instructions</th>
+    </tr>
+    <tr style="height:200px">
+      <td>
+          <div *ngFor="let instruction of recipeData[2].instructions">
+              {{instruction.stepNumber}}. {{instruction.step}}
+          </div>
+      </td>
+    </tr>
+  </table>
+
+<div *ngIf="loggedIn" style="width:100%">
     <!-- <span *ngIf=""></span> -->
     <div *ngIf="reviewing; else reviewButton">
       <button class="btn btn-primary" (click)="toggleReview()">Cancel</button>
@@ -35,3 +89,4 @@
   </div>
   <app-review [id]=recipe.recipeId [type]='"recipe"'></app-review>
 </div> 
+</div>

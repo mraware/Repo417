@@ -55,6 +55,17 @@ public class RecipeController {
 			return null;
 		}
 	}
+  
+	@RequestMapping(value="/all/{id}", method=RequestMethod.GET)
+	@ResponseBody
+	public String getRecipesByUserId(@PathVariable(value="id") int id) {
+		try {
+			return om.writeValueAsString(rs.getAllRecipesByUserId(id));
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	@ResponseBody
@@ -113,7 +124,7 @@ public class RecipeController {
 	{
 		try 
 		{
-			String recipe = rs.updateRecipe(om.readValue(s, Recipe.class)).toString();
+			String recipe = om.writeValueAsString(rs.updateRecipe(om.readValue(s, Recipe.class)));
 			return recipe;
 		}
 		catch (JsonProcessingException e) 

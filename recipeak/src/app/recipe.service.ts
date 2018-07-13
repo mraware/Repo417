@@ -23,7 +23,7 @@ export class RecipeService {
   getRecipe(id: number) {
 	return this.http.get(`${this.appUrl}recipe/${id}`, {withCredentials: false})
 	  .pipe(map(
-		resp => resp as Recipe
+		resp => resp[0].recipe as Recipe
 	  ));
   }
 
@@ -48,5 +48,13 @@ export class RecipeService {
     return this.http.post(`${this.appUrl}recipe/update`, body)
     .pipe(map(resp => resp as Recipe));
   }
+
+  
+  getRecipesByUser(id: number): Observable<Recipe[]> {
+    return this.http.get(`${this.appUrl}recipe/all/${id}`, {withCredentials: false})
+      .pipe(map(
+      resp => resp as Recipe[]
+      ));
+    }
 
 }
