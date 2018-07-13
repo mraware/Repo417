@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { RecipeComponent } from './recipe/recipe.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +13,7 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { ProfileService } from './profile.service';
+import { SearchComponent } from './search/search.component';
 import { HistoryService } from './history.service';
 import { RecipeService } from './recipe.service';
 import { LogOutComponent } from './log-out/log-out.component';
@@ -27,6 +29,7 @@ import { ReviewComponent } from './review/review.component';
     RecipeDetailComponent,
     ProfileComponent,
     ProfilesComponent,
+    SearchComponent,
     LogOutComponent,
     HistoryComponent,
     ReviewComponent
@@ -34,6 +37,9 @@ import { ReviewComponent } from './review/review.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    NgbModule,
     HttpClientModule,
     FormsModule
   ],

@@ -1,0 +1,47 @@
+<div class="container">
+    <div [hidden]="submitted">
+        <h1>Recipe Search</h1>
+        <form (ngSubmit)="onSubmit()" #searchForm="ngForm">
+
+            <div class="form-group">
+                <label for="RecipeName">Recipe Name</label>
+                <input type="text" class="form-control" id="recipeName" [(ngModel)]="model.recipeName" name="recipeName">
+            </div>
+
+            <div class="form-group">
+                <label for="Flavor">Flavor</label>
+                <input type="text" class="form-control" id="flavor" [(ngModel)]="model.flavor" name="flavor">
+            </div>
+
+            <div class="form-group">
+                <label for="UserName">User Name</label>
+                <input type="text" class="form-control" id="userName" [(ngModel)]="model.userName" name="userName">
+            </div>
+
+            <button type="button" class="btn btn-success" (click)="getSearchType(searchForm);" style="margin-bottom: 15px">Submit</button>
+
+            <div class="form-group">
+                <label for="IngredientAdd">Ingredients</label>
+                <input type="text" class="form-control" id="ingredientAdd" [(ngModel)]="model.ingredientAdd" name="ingredientAdd">
+            </div>
+
+            <div>
+                <p> Selected Ingredients: {{showFormControls(searchForm)}}</p>
+            </div>
+
+            <button type="button" class="btn btn-default" (click)="newIngredient(searchForm);" style="margin-bottom: 15px" [disabled]="model.ingredientAdd === '' || model.ingredientAdd == null">Add Ingredient</button>&nbsp;
+
+            <button type="button" class="btn btn-success" (click)="getRecipeContains();"style="margin-bottom: 15px">Contains</button>&nbsp;
+
+            <button type="button" class="btn btn-success" (click)="getRecipeMadeFrom();"style="margin-bottom: 15px">Made From</button>
+        </form>
+    </div>
+</div>
+
+<ul class="recipes">
+	<li *ngFor="let recipe of recipes">
+		<a routerLink="/detail/{{recipe.recipeId}}">
+			<span class="badge">{{recipe.recipeId}}</span> {{recipe.name}}
+		</a>
+	</li>
+</ul> 

@@ -7,8 +7,10 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Component;
 
+import com.revature.beans.History;
 import com.revature.beans.User;
 
 @Component
@@ -72,5 +74,13 @@ public class UserHibernateDAO implements UserDAO, HibernateSession
 	@Override
 	public List<User> getAllUsers() {
 		return session.createQuery("from User", User.class).list();
+	}
+	
+	@Override
+	public int getIdByUsername(String name) {
+		Query<User> query = session.createQuery("FROM com.revature.beans.User user "
+				+ "WHERE user.username=:name");
+		query.setParameter("name", name);
+		return query.uniqueResult().getUserId();
 	}
 }
